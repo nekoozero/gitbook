@@ -7,6 +7,8 @@ summary: ThreadLocal的基础
 
 ## Thread.join()
 
+> 时间: 2019/5/30
+
 如果一个线程A执行了thread.join()，其含义是：当线程A等待thread线程终止之后才从thread.join()返回。（即线程A会从等待处继续执行）。
 
 ```java

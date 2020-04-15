@@ -4,6 +4,6 @@
 
 如果有需要讨论或纠错的，也随时欢迎，非常感谢。
 
-地址：`www.qxnekoo.cn:8080`
+地址:`www.qxnekoo.cn:8080`
 
 邮箱:`qxnekoo@163.com`

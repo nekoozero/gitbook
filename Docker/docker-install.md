@@ -1,4 +1,7 @@
 # 安装Docker
+
+> 时间: 2020/2/20
+
 官方网站(我的宿主机系统为centos)
 https://docs.docker.com/install/linux/docker-ce/centos/
 ## 设置仓库

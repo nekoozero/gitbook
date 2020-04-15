@@ -1,5 +1,7 @@
 # Spring Aop的两个问题
 
+> 时间: 2020/4/10
+
 先说两个结论：
 
 > 1. `Spring`事务默认只对`RunTimeException`或`error`进行捕获回滚。但是可以通过`rollbackFor`来指定。
@@ -135,3 +137,7 @@ public void userMethod8() throws Exception {
 
 
 总结一下这个错：大概率是在默认的传播机制下，父方法调用子方法时，想要`try catch`住子方法的错误，达到一种子方法回滚，父方法不回滚的效果。 和`Exception`和`RunTimeException`没有关系，两者都会导致这个错。
+
+
+
+-----如果文中有错误，欢迎进行指导。

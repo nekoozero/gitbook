@@ -1,5 +1,7 @@
 # Dokcer 的基本组成
 
+> 时间: 2019/10/20
+
 * Docker Client 客户端
 * Docker Daemon 守护进程
 * Docker Image 镜像
