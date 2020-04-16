@@ -43,6 +43,7 @@
     * [swagger2](Daily/swagger2.md)
     * [CountDownLatch的一次使用](Daily/CountDownLatch的一次使用.md)
     * [Spring Aop的两个问题](Daily/Spring Aop的两个问题.md)
+    * [nacos集群安装](Daily/nacos集群安装.md)
 * [原创](My/README.md)
     * [HashMap容量问题](My/HashMap容量问题.md)
     * [HashMap的容量问题2-0](My/HashMap的容量问题2-0.md)

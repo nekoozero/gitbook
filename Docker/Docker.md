@@ -416,6 +416,8 @@ docker run -it --name dc002 --volumes-from dc01 nekoo/centos
 
 总结：
 
+
+
 | BUILD         | BOTH    | RUN        |
 | ------------- | ------- | ---------- |
 | FROM          | WORKDIR | CMD        |
@@ -425,6 +427,8 @@ docker run -it --name dc002 --volumes-from dc01 nekoo/centos
 | RUN           |         | ENTRYPOINT |
 | ONBUILD       |         |            |
 | .dockerignore |         |            |
+
+
 
 ## 案例
 
