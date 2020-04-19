@@ -14,7 +14,7 @@ public class EntranceOfWriteOffServiceImpl implements EntranceOfWriteOffService,
     private Map<String, CommonService> typeMap = new HashMap<>();
 
     @Override
-    //是AppContextInitLisenter接口中的方法
+    //实现AppContextInitLisenter接口中的方法
     public void contextInitialized(ApplicationContext applicationContext) {
         Map<String, CommonService> map = applicationContext.getBeansOfType(CommonService.class);
         map.forEach((k, v) -> typeMap.put(v.getType(), v));
