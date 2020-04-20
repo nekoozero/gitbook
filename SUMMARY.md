@@ -46,6 +46,7 @@
     * [nacos集群安装](Daily/nacos集群安装.md)
     * [Spring 中的 ApplicationListener](Daily/Spring 中的 ApplicationListener.md)
     * [理解ApplicationListener](Daily/理解ApplicationListener.md)
+    * [BeanPostProcessor](Daily/BeanPostProcessor .md)
 * [原创](My/README.md)
     * [HashMap容量问题](My/HashMap容量问题.md)
     * [HashMap的容量问题2-0](My/HashMap的容量问题2-0.md)
