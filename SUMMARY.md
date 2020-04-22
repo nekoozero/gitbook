@@ -41,6 +41,7 @@
     * [Spring 中的 ApplicationListener](Spring/Spring 中的 ApplicationListener.md)
     * [理解ApplicationListener](Spring/理解ApplicationListener.md)
     * [BeanPostProcessor](Spring/BeanPostProcessor.md)
+    * [BeanDefinition](Spring/BeanDefinition.md)
 * [日常记录](Daily/README.md)
     * [Spring Boot异常处理RestControllerAdvice](Daily/Spring Boot异常处理RestControllerAdvice.md)
     * [Spring-boot常用配置](Daily/Spring-boot常用配置.md)
