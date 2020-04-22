@@ -2,6 +2,16 @@
 
 > 时间：2020/4/19
 
+看看源码中的注释，最好结合英文文档来看：
+
+```
+由应用程序事件侦听器实现的接口。
+
+基于观察者设计模式的标准接口({@code java.util.EventListener})。
+
+从Spring 3.0开始，{@code ApplicationListener}通常可以声明它感兴趣的事件类型(泛型)。当向Spring {@code ApplicationContext}注册时，事件将被相应地过滤，侦听器将被调用，仅用于匹配事件对象。
+```
+
 监听容器中发布的事件，完成事件驱动模型的开发。是**观察者设计模式**的实现，通过 `ApplicationEvent` 和 `ApplicationListener` 接口，可以实现 `ApplicationContext` 事件处理。
 
 简单的来说，在容器中注册一个 `ApplicationListener` 监听器，每当 `ApplicationContext` 发布 `ApplicationEvent` 时，监听器会根据事件的类型来处理一些逻辑。

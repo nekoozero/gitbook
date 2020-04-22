@@ -2,6 +2,16 @@
 
 > 时间：2020/4/21
 
+先将源码中的注释贴上来，毕竟是翻译的，看的时候最好还是对照英文的来看：
+
+```
+工厂挂钩允许自定义修改新的bean实例;例如，检查标记接口或使用代理包装bean。通常，通过标记接口或类似方法填充bean的后处理器将实现{@link# postprocessbeforeinitialize}，而使用代理包装bean的后处理器通常将实现{@link# postprocessafterinitial}。
+
+
+注册
+{@code ApplicationContext}可以在其bean定义中自动检测{@code BeanPostProcessor} bean，并将这些后处理程序应用于随后创建的任何bean。普通的{@code BeanFactory}允许对后处理程序进行编程式注册，将它们应用于通过bean factory创建的所有bean。
+```
+
 直译过来，就是对象后处理器。接口中有两个默认方法
 
 ```java
