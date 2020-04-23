@@ -93,4 +93,32 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 }
 ```
 
-`BeanDefinition`仅仅是一个最简单的接口，主要功能是允许`BeanFactoryPostProcessor` 例如`PropertyPlaceHolderConfigure` 能够检索并修改属性值和别的bean的元数据
+`BeanDefinition`仅仅是一个最简单的接口，主要功能是允许`BeanFactoryPostProcessor` 例如`PropertyPlaceHolderConfigure` 能够检索并修改属性值和别的bean的元数据。
+
+附加一张 `Bean` 的生命周期
+
+![Bean_lifeCycle.jpg](http://www.qxnekoo.cn:8888/images/2020/04/23/Bean_lifeCycle.jpg)
+
+
+
+第1步：调用 `bean` 的构造方法创建 `bean`；
+
+第2步：通过反射调用 `setter` 方法进行属性的依赖注入；
+
+第3步：如果实现 `BeanNameAware` 接口的话，会设置 `bean` 的 `name`；
+
+第4步：如果实现了`BeanFactoryAware`，会把 `bean factory` 设置给 `bean`；
+
+第5步：如果实现了 `ApplicationContextAware`，会给 `bean` 设置 `ApplictionContext`；
+
+第6步：如果实现了 `BeanPostProcessor` 接口，则执行前置处理方法；
+
+第7步：实现了 `InitializingBean` 接口的话，执行 `afterPropertiesSet` 方法；
+
+第8步：执行自定义的 `init` 方法；
+
+第9步：执行 `BeanPostProcessor` 接口的后置处理方法。
+
+这时，就完成了 `bean` 的创建过程。
+
+在使用完 `bean` 需要销毁时，会先执行 `DisposableBean` 接口的 `destroy` 方法，然后在执行自定义的 `destroy` 方法。
