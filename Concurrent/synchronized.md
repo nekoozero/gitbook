@@ -36,6 +36,46 @@ synchronized的对象锁，其指针指向的是一个monitor对象（由C++实�
 
 那么monitor的作用是什么呢？**在 `java` 虚拟机中，线程一旦进入到被`synchronized`修饰的方法或代码块时，指定的锁对象通过某些操作将对象头中的`LockWord`指向`monitor`的起始地址与之关联，同时`monitor`中的`Owner`存放拥有该锁的线程的唯一标识，确保一次只能有一个线程执行该部分的代码，线程在获取锁之前不允许执行该部分的代码。**
 
+Monitor对象结构：
+
+![Monitor.png](http://www.qxnekoo.cn:8888/images/2020/04/25/Monitor.png)
+
+ObjectMonitor:
+
+```c++
+ObjectMonitor() {
+    _header       = NULL;//markOop对象头
+    _count        = 0;
+    _waiters      = 0,//等待线程数
+    _recursions   = 0;//重入次数
+    _object       = NULL;//监视器锁寄生的对象。锁不是平白出现的，而是寄托存储于对象中。
+    _owner        = NULL;//指向获得ObjectMonitor对象的线程或基础锁
+    _WaitSet      = NULL;//处于wait状态的线程，会被加入到wait set；
+    _WaitSetLock  = 0 ;
+    _Responsible  = NULL ;
+    _succ         = NULL ;
+    _cxq          = NULL ;
+    FreeNext      = NULL ;
+    _EntryList    = NULL ;//处于等待锁block状态的线程，会被加入到entry set；
+    _SpinFreq     = 0 ;
+    _SpinClock    = 0 ;
+    OwnerIsThread = 0 ;// _owner is (Thread *) vs SP/BasicLock
+    _previous_owner_tid = 0;// 监视器前一个拥有者线程的ID
+}
+```
+
+
+
+![ObjectMonitor.png](http://www.qxnekoo.cn:8888/images/2020/04/25/ObjectMonitor.png)
+
+这部分的内容、原理确实比较复杂，贴上大佬的文章：
+
+https://www.cnblogs.com/dennyzhangdd/p/6734638.html#_label2
+
+https://mp.weixin.qq.com/s/KFgAY3g4tfuaKumVswID4A
+
+md，把我给看跪了！！！！
+
 ## 锁的升级
 
 ### 偏向锁
