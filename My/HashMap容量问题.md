@@ -107,7 +107,7 @@ final float loadFactor;
 
 ## 具体理解
 
-不多说了，开撸：
+不多说了，开撸，其实就是用反射拿到运行时HashMap中的字段属性：
 
 * HashMap()
 
