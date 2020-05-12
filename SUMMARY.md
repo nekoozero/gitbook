@@ -37,6 +37,7 @@
     * [单例模式](Basic/单例模式.md)
     * [接口和抽象类](Basic/接口和抽象类.md)
     * [ConcurrentHashMap](Basic/ConcurrentHashMap.md)
+    * [SPI](Basic/SPI.md)
 * [Spring](Spring/README.md)
     * [Spring AOP的两个问题](Spring/Spring Aop的两个问题.md)
     * [Spring 中的 ApplicationListener](Spring/Spring 中的 ApplicationListener.md)
