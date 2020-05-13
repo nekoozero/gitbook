@@ -151,11 +151,17 @@ wang wang
 
 针对以上的不足点，我们在SPI机制选择时，可以考虑使用dubbo实现的SPI机制。
 
-> 具体参考: http://dubbo.apache.org/zh-cn/blog/introduction-to-dubbo-spi.html
+> 具体参考: 
 >
-> 其他参考文章: http://www.spring4all.com/article/260
+> http://dubbo.apache.org/zh-cn/blog/introduction-to-dubbo-spi.html
 >
-> ​                         https://blog.csdn.net/yangguosb/article/details/78772730
+> 其他参考文章: 
+>
+> http://www.spring4all.com/article/260
+>
+> https://blog.csdn.net/yangguosb/article/details/78772730
+>
+> https://www.jianshu.com/p/46b42f7f593c
 
 
 
