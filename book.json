@@ -1,36 +1,5 @@
 {
   "plugins":[
-      "expandable-chapters",
-      "change_girls"
-  ],
-  "pluginsConfig": {
-    
-    "change_girls" : {
-        "time" : 30,
-        "urls" : [
-          "http://www.qxnekoo.cn:8888/image/TT3u",
-          "http://www.qxnekoo.cn:8888/image/TP5h",
-          "http://www.qxnekoo.cn:8888/image/TMD3",
-          "http://www.qxnekoo.cn:8888/image/TLLo",
-          "http://www.qxnekoo.cn:8888/image/PcdC",
-          "http://www.qxnekoo.cn:8888/image/PHtc",
-          "http://www.qxnekoo.cn:8888/image/PGmi",
-          "http://www.qxnekoo.cn:8888/image/P3fQ",
-          "http://www.qxnekoo.cn:8888/image/P04P",
-          "http://www.qxnekoo.cn:8888/image/Pwut",
-          "http://www.qxnekoo.cn:8888/image/M0UU",
-          "http://www.qxnekoo.cn:8888/image/MSEI",
-          "http://www.qxnekoo.cn:8888/image/M6jV",
-          "http://www.qxnekoo.cn:8888/image/M1NA",
-          "http://www.qxnekoo.cn:8888/image/MfSs",
-          "http://www.qxnekoo.cn:8888/image/MVh6",
-          "http://www.qxnekoo.cn:8888/image/MEou",
-          "http://www.qxnekoo.cn:8888/image/MzHh",
-          "http://www.qxnekoo.cn:8888/image/MkX3",
-          "http://www.qxnekoo.cn:8888/image/Mdbo",
-          "http://www.qxnekoo.cn:8888/image/MQTC",
-          "http://www.qxnekoo.cn:8888/image/MXJc"
-        ]
-    }
-}
+      "expandable-chapters" 
+  ]
 }
