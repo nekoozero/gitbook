@@ -62,6 +62,7 @@
     * [Docker总记](Docker/Docker.md)
     * [Docker安装](Docker/docker-install.md)
     * [安装mysql](Docker/docker-mysql.md)
+    * [jenkins的部分坑](Docker/jenkins的坑.md)
 * [Linux](Linux/README.md)
     * [Linux虚拟机VM网络配置](Linux/Linux虚拟机VM网络配置.md)
     * [vi和vim](Linux/vi和vim.md)
