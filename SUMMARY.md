@@ -92,6 +92,7 @@
     * [UML和类之间的关系](Design/UML和类之间的关系.md)
     * [七大原则](Design/七大原则.md)
     * [单例模式](Design/单例模式.md)
+    * [原型模式](Design/原型模式.md)
 * [莫须有](Other/README.md)
     * [遇到的问题](Other/遇到的问题.md)
     * [js引入静态文件](Other/js引入静态文件.md)
