@@ -99,6 +99,7 @@
 * [Effective Java](Effective/README.md)
     * [第一章：创建和销毁对象](Effective/创建和销毁对象.md)
 * [Netty](Netty/README.md)
+    * [BIO](Netty/IO 模型.md)
 * [莫须有](Other/README.md)
     * [遇到的问题](Other/遇到的问题.md)
     * [js引入静态文件](Other/js引入静态文件.md)
