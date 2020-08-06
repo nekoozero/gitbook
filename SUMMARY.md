@@ -102,6 +102,7 @@
     * [BIO](Netty/IO 模型.md)
     * [NIO基本介绍](Netty/NIO基本介绍.md)
     * [Buffer和Channel](Netty/Buffer和Channel.md)
+    * [Selector](Netty/Selector.md)
 * [莫须有](Other/README.md)
     * [遇到的问题](Other/遇到的问题.md)
     * [js引入静态文件](Other/js引入静态文件.md)
