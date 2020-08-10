@@ -4,6 +4,8 @@
 
 BeanFactory 是 Spring 框架的基础设施，面向 Spring 本身；ApplicationContext 面向使用 Spring 框架的开发者，几乎所有的应用场合我们都直接使用 ApplicationContext 而非底层的 BeanFactory。
 
+![BeanFactory-.png](http://www.qxnekoo.cn:8888/images/2020/08/10/BeanFactory-.png)
+
 下面列举一些基础设施：
 
 1. *BeanDefinitionRegistry 注册表*
@@ -43,6 +45,8 @@ BeanFactory 是 Spring 框架的基础设施，面向 Spring 本身；Applicatio
 ## 不得不提的 ApplicationContext(面向开发应用)
 
 ApplicationContext 由 BeanFactory 派生而来，提供了更多面向实际应用的功能。ApplicationContext 继承了HierarchicalBeanFactory 和 ListableBeanFactory 接口，在此基础上，还通过多个其他的接口扩展了 BeanFactory 的功能。
+
+![ApplicationContext.png](http://www.qxnekoo.cn:8888/images/2020/08/10/ApplicationContext.png)
 
 1. ClassPathXmlApplicationContext: 默认从类路径加载配置文件
 2. FileSystemXmlApplicationContext: 默认从文件系统中装在配置文件
