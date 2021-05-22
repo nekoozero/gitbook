@@ -1,0 +1,2385 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>nio 与 netty 的简单示例 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../Data-structure-algorithm/" />
+    
+    
+    <link rel="prev" href="各种服务模型.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    前言
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../JVM/">
+            
+                <a href="../JVM/">
+            
+                    
+                    JVM
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../JVM/Java内存区域与内存溢出.html">
+            
+                <a href="../JVM/Java内存区域与内存溢出.html">
+            
+                    
+                    Java内存区域与内存溢出
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../JVM/类变量和Class对象存放的区域.html">
+            
+                <a href="../JVM/类变量和Class对象存放的区域.html">
+            
+                    
+                    类变量和Class对象存放的区域
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../JVM/TLAB.html">
+            
+                <a href="../JVM/TLAB.html">
+            
+                    
+                    TLAB
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="../JVM/内存分配与回收策略.html">
+            
+                <a href="../JVM/内存分配与回收策略.html">
+            
+                    
+                    内存分配与回收策略
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" data-path="../JVM/HotSpot对象.html">
+            
+                <a href="../JVM/HotSpot对象.html">
+            
+                    
+                    HotSpot对象
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6" data-path="../JVM/对象存活和引用.html">
+            
+                <a href="../JVM/对象存活和引用.html">
+            
+                    
+                    对象存活和引用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.7" data-path="../JVM/垃圾算法细节名词.html">
+            
+                <a href="../JVM/垃圾算法细节名词.html">
+            
+                    
+                    垃圾算法细节名词
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.8" data-path="../JVM/经典垃圾收集器.html">
+            
+                <a href="../JVM/经典垃圾收集器.html">
+            
+                    
+                    经典垃圾收集器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.9" data-path="../JVM/类加载器.html">
+            
+                <a href="../JVM/类加载器.html">
+            
+                    
+                    类加载器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.10" data-path="../JVM/类加载机制.html">
+            
+                <a href="../JVM/类加载机制.html">
+            
+                    
+                    类加载机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.11" data-path="../JVM/JVM中的编译器与解释器.html">
+            
+                <a href="../JVM/JVM中的编译器与解释器.html">
+            
+                    
+                    HotSpot中的编译器与解释器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.12" data-path="../JVM/JIT部分优化措施.html">
+            
+                <a href="../JVM/JIT部分优化措施.html">
+            
+                    
+                    JIT部分优化措施
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../Concurrent/">
+            
+                <a href="../Concurrent/">
+            
+                    
+                    多线程
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../Concurrent/JMM.html">
+            
+                <a href="../Concurrent/JMM.html">
+            
+                    
+                    JMM
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../Concurrent/线程安全的实现.html">
+            
+                <a href="../Concurrent/线程安全的实现.html">
+            
+                    
+                    线程安全的实现
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../Concurrent/volatile.html">
+            
+                <a href="../Concurrent/volatile.html">
+            
+                    
+                    volatile
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="../Concurrent/synchronized.html">
+            
+                <a href="../Concurrent/synchronized.html">
+            
+                    
+                    synchronized
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5" data-path="../Concurrent/锁优化.html">
+            
+                <a href="../Concurrent/锁优化.html">
+            
+                    
+                    锁优化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.6" data-path="../Concurrent/CAS.html">
+            
+                <a href="../Concurrent/CAS.html">
+            
+                    
+                    CAS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.7" data-path="../Concurrent/JUC常用并发工具类.html">
+            
+                <a href="../Concurrent/JUC常用并发工具类.html">
+            
+                    
+                    JUC常用并发工具类
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.8" data-path="../Concurrent/线程中断.html">
+            
+                <a href="../Concurrent/线程中断.html">
+            
+                    
+                    线程中断
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9" data-path="../Concurrent/ThreadLocal基础.html">
+            
+                <a href="../Concurrent/ThreadLocal基础.html">
+            
+                    
+                    ThreadLocal基础
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.10" data-path="../Concurrent/等待-通知机制.html">
+            
+                <a href="../Concurrent/等待-通知机制.html">
+            
+                    
+                    等待-通知机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.11" data-path="../Concurrent/AQS.html">
+            
+                <a href="../Concurrent/AQS.html">
+            
+                    
+                    AQS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../Basic/">
+            
+                <a href="../Basic/">
+            
+                    
+                    基础/高级
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../Basic/java中的序列化.html">
+            
+                <a href="../Basic/java中的序列化.html">
+            
+                    
+                    java中的序列化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../Basic/反射.html">
+            
+                <a href="../Basic/反射.html">
+            
+                    
+                    反射
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../Basic/动态代理.html">
+            
+                <a href="../Basic/动态代理.html">
+            
+                    
+                    动态代理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="../Basic/函数式编程.html">
+            
+                <a href="../Basic/函数式编程.html">
+            
+                    
+                    函数式编程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="../Basic/stream.html">
+            
+                <a href="../Basic/stream.html">
+            
+                    
+                    stream流
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="../Basic/父子类中的初始化顺序.html">
+            
+                <a href="../Basic/父子类中的初始化顺序.html">
+            
+                    
+                    父子类中的初始化顺序
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7" data-path="../Basic/值传递和引用传递.html">
+            
+                <a href="../Basic/值传递和引用传递.html">
+            
+                    
+                    值传递还是引用传递
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.8" data-path="../Basic/单例模式.html">
+            
+                <a href="../Basic/单例模式.html">
+            
+                    
+                    单例模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.9" data-path="../Basic/接口和抽象类.html">
+            
+                <a href="../Basic/接口和抽象类.html">
+            
+                    
+                    接口和抽象类
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.10" data-path="../Basic/ConcurrentHashMap.html">
+            
+                <a href="../Basic/ConcurrentHashMap.html">
+            
+                    
+                    ConcurrentHashMap
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.11" data-path="../Basic/SPI.html">
+            
+                <a href="../Basic/SPI.html">
+            
+                    
+                    SPI
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../Spring/">
+            
+                <a href="../Spring/">
+            
+                    
+                    Spring
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../Spring/Spring 中的 ApplicationListener.html">
+            
+                <a href="../Spring/Spring 中的 ApplicationListener.html">
+            
+                    
+                    Spring 中的 ApplicationListener
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../Spring/理解ApplicationListener.html">
+            
+                <a href="../Spring/理解ApplicationListener.html">
+            
+                    
+                    理解ApplicationListener
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="../Spring/BeanPostProcessor.html">
+            
+                <a href="../Spring/BeanPostProcessor.html">
+            
+                    
+                    BeanPostProcessor
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="../Spring/BeanDefinition.html">
+            
+                <a href="../Spring/BeanDefinition.html">
+            
+                    
+                    BeanDefinition
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5" data-path="../Spring/BeanFactory.html">
+            
+                <a href="../Spring/BeanFactory.html">
+            
+                    
+                    BeanFactory
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.6" data-path="../Spring/Spring中的扩展.html">
+            
+                <a href="../Spring/Spring中的扩展.html">
+            
+                    
+                    Spring中的扩展
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.7" data-path="../Spring/BeanFactory基础设施.html">
+            
+                <a href="../Spring/BeanFactory基础设施.html">
+            
+                    
+                    BeanFactory基础设施
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../Daily/">
+            
+                <a href="../Daily/">
+            
+                    
+                    日常记录
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../Daily/Spring Boot异常处理RestControllerAdvice.html">
+            
+                <a href="../Daily/Spring Boot异常处理RestControllerAdvice.html">
+            
+                    
+                    Spring Boot异常处理RestControllerAdvice
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../Daily/Spring-boot常用配置.html">
+            
+                <a href="../Daily/Spring-boot常用配置.html">
+            
+                    
+                    Spring-boot常用配置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="../Daily/token的简单使用.html">
+            
+                <a href="../Daily/token的简单使用.html">
+            
+                    
+                    token的简单使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4" data-path="../Daily/swagger2.html">
+            
+                <a href="../Daily/swagger2.html">
+            
+                    
+                    swagger2
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5" data-path="../Daily/CountDownLatch的一次使用.html">
+            
+                <a href="../Daily/CountDownLatch的一次使用.html">
+            
+                    
+                    CountDownLatch的一次使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.6" data-path="../Daily/nacos集群安装.html">
+            
+                <a href="../Daily/nacos集群安装.html">
+            
+                    
+                    nacos集群安装
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../My/">
+            
+                <a href="../My/">
+            
+                    
+                    原创
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="../My/HashMap容量问题.html">
+            
+                <a href="../My/HashMap容量问题.html">
+            
+                    
+                    HashMap容量问题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="../My/HashMap的容量问题2-0.html">
+            
+                <a href="../My/HashMap的容量问题2-0.html">
+            
+                    
+                    HashMap的容量问题2-0
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="../My/三元运算符的 NPE.html">
+            
+                <a href="../My/三元运算符的 NPE.html">
+            
+                    
+                    三元运算符的 NPE
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4" data-path="../My/HashMap扩容时是否hash.html">
+            
+                <a href="../My/HashMap扩容时是否hash.html">
+            
+                    
+                    HashMap扩容时是否hash
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.5" data-path="../My/Spring Aop的两个问题.html">
+            
+                <a href="../My/Spring Aop的两个问题.html">
+            
+                    
+                    Spring AOP的两个问题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.6" data-path="../My/ThreadLocal相关.html">
+            
+                <a href="../My/ThreadLocal相关.html">
+            
+                    
+                    ThreadLocal相关
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="../Docker/">
+            
+                <a href="../Docker/">
+            
+                    
+                    Docker
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="../Docker/Docker.html">
+            
+                <a href="../Docker/Docker.html">
+            
+                    
+                    Docker总记
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2" data-path="../Docker/docker-install.html">
+            
+                <a href="../Docker/docker-install.html">
+            
+                    
+                    Docker安装
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3" data-path="../Docker/docker-mysql.html">
+            
+                <a href="../Docker/docker-mysql.html">
+            
+                    
+                    安装mysql
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4" data-path="../Docker/jenkins的坑.html">
+            
+                <a href="../Docker/jenkins的坑.html">
+            
+                    
+                    jenkins的部分坑
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="../Linux/">
+            
+                <a href="../Linux/">
+            
+                    
+                    Linux
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" data-path="../Linux/Linux虚拟机VM网络配置.html">
+            
+                <a href="../Linux/Linux虚拟机VM网络配置.html">
+            
+                    
+                    Linux虚拟机VM网络配置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2" data-path="../Linux/vi和vim.html">
+            
+                <a href="../Linux/vi和vim.html">
+            
+                    
+                    vi和vim
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.3" data-path="../Linux/Linux目录.html">
+            
+                <a href="../Linux/Linux目录.html">
+            
+                    
+                    Linux目录
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.4" data-path="../Linux/用户.html">
+            
+                <a href="../Linux/用户.html">
+            
+                    
+                    用户
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.5" data-path="../Linux/指令.html">
+            
+                <a href="../Linux/指令.html">
+            
+                    
+                    指令
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.6" data-path="../Linux/任务调度.html">
+            
+                <a href="../Linux/任务调度.html">
+            
+                    
+                    任务调度
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.7" data-path="../Linux/磁盘分区、挂载.html">
+            
+                <a href="../Linux/磁盘分区、挂载.html">
+            
+                    
+                    磁盘分区、挂载
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.8" data-path="../Linux/磁盘情况查询.html">
+            
+                <a href="../Linux/磁盘情况查询.html">
+            
+                    
+                    磁盘情况查询
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.9" data-path="../Linux/安装iptables.html">
+            
+                <a href="../Linux/安装iptables.html">
+            
+                    
+                    安装iptables
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.10" data-path="../Linux/rpm 和 yum.html">
+            
+                <a href="../Linux/rpm 和 yum.html">
+            
+                    
+                    rpm 和 yum
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.11" data-path="../Linux/动态监控进程.html">
+            
+                <a href="../Linux/动态监控进程.html">
+            
+                    
+                    动态监控进程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.12" data-path="../Linux/进程管理.html">
+            
+                <a href="../Linux/进程管理.html">
+            
+                    
+                    进程管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.13" data-path="../Linux/常用软件.html">
+            
+                <a href="../Linux/常用软件.html">
+            
+                    
+                    常用软件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.14" data-path="../Linux/Shell运算符与条件判断.html">
+            
+                <a href="../Linux/Shell运算符与条件判断.html">
+            
+                    
+                    Shell运算符与条件判断
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.15" data-path="../Linux/Shell 读取控制台输入.html">
+            
+                <a href="../Linux/Shell 读取控制台输入.html">
+            
+                    
+                    Shell 读取控制台输入
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.16" data-path="../Linux/shell 综合案例.html">
+            
+                <a href="../Linux/shell 综合案例.html">
+            
+                    
+                    shell 综合案例
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.17" data-path="../Linux/Shell.html">
+            
+                <a href="../Linux/Shell.html">
+            
+                    
+                    Shell
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.18" data-path="../Linux/网络配置.html">
+            
+                <a href="../Linux/网络配置.html">
+            
+                    
+                    网络配置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.19" data-path="../Linux/日常使用记录.html">
+            
+                <a href="../Linux/日常使用记录.html">
+            
+                    
+                    日常使用记录
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="../Http/">
+            
+                <a href="../Http/">
+            
+                    
+                    网络、计算机、操作系统
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1" data-path="../Http/网络基础 TCP-IP.html">
+            
+                <a href="../Http/网络基础 TCP-IP.html">
+            
+                    
+                    网络基础 TCP/IP
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.2" data-path="../Http/IP.html">
+            
+                <a href="../Http/IP.html">
+            
+                    
+                    IP、TCP、DNS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.3" data-path="../Http/HTTP通信.html">
+            
+                <a href="../Http/HTTP通信.html">
+            
+                    
+                    HTTP通信
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.4" data-path="../Http/HTTP报文内的HTTP信息.html">
+            
+                <a href="../Http/HTTP报文内的HTTP信息.html">
+            
+                    
+                    HTTP报文内的HTTP信息
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.5" data-path="../Http/操作系统简介.html">
+            
+                <a href="../Http/操作系统简介.html">
+            
+                    
+                    操作系统简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.6" data-path="../Http/CPU简介.html">
+            
+                <a href="../Http/CPU简介.html">
+            
+                    
+                    CPU简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.7" data-path="../Http/内存简介.html">
+            
+                <a href="../Http/内存简介.html">
+            
+                    
+                    内存简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.8" data-path="../Http/IO简介.html">
+            
+                <a href="../Http/IO简介.html">
+            
+                    
+                    IO简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.9" data-path="../Http/总线简介.html">
+            
+                <a href="../Http/总线简介.html">
+            
+                    
+                    总线简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="../Design/">
+            
+                <a href="../Design/">
+            
+                    
+                    设计模式
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.11.1" data-path="../Design/23种设计模式.html">
+            
+                <a href="../Design/23种设计模式.html">
+            
+                    
+                    23种设计模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.2" data-path="../Design/UML和类之间的关系.html">
+            
+                <a href="../Design/UML和类之间的关系.html">
+            
+                    
+                    UML和类之间的关系
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.3" data-path="../Design/七大原则.html">
+            
+                <a href="../Design/七大原则.html">
+            
+                    
+                    七大原则
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.4" data-path="../Design/单例模式.html">
+            
+                <a href="../Design/单例模式.html">
+            
+                    
+                    单例模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.5" data-path="../Design/原型模式.html">
+            
+                <a href="../Design/原型模式.html">
+            
+                    
+                    原型模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.6" data-path="../Design/工厂方法模式.html">
+            
+                <a href="../Design/工厂方法模式.html">
+            
+                    
+                    工厂方法模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.7" data-path="../Design/策略模式.html">
+            
+                <a href="../Design/策略模式.html">
+            
+                    
+                    策略模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.8" data-path="../Design/装饰者模式.html">
+            
+                <a href="../Design/装饰者模式.html">
+            
+                    
+                    装饰者模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.9" data-path="../Design/Geek/">
+            
+                <a href="../Design/Geek/">
+            
+                    
+                    Geek
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.11.9.1" data-path="../Design/Geek/面向过程示例.html">
+            
+                <a href="../Design/Geek/面向过程示例.html">
+            
+                    
+                    面向过程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.9.2" data-path="../Design/Geek/接口与抽象类.html">
+            
+                <a href="../Design/Geek/接口与抽象类.html">
+            
+                    
+                    接口与抽象类
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="../Effective/">
+            
+                <a href="../Effective/">
+            
+                    
+                    Effective Java
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.12.1" data-path="../Effective/创建和销毁对象.html">
+            
+                <a href="../Effective/创建和销毁对象.html">
+            
+                    
+                    第一章：创建和销毁对象
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.2" data-path="../Effective/通用方法.html">
+            
+                <a href="../Effective/通用方法.html">
+            
+                    
+                    第二章：对于所有对象都通用的方法
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Netty
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.13.1" data-path="IO 模型.html">
+            
+                <a href="IO 模型.html">
+            
+                    
+                    BIO
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.2" data-path="NIO基本介绍.html">
+            
+                <a href="NIO基本介绍.html">
+            
+                    
+                    NIO基本介绍
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.3" data-path="Buffer和Channel.html">
+            
+                <a href="Buffer和Channel.html">
+            
+                    
+                    Buffer和Channel
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.4" data-path="Selector.html">
+            
+                <a href="Selector.html">
+            
+                    
+                    Selector
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.5" data-path="NIO与零拷贝.html">
+            
+                <a href="NIO与零拷贝.html">
+            
+                    
+                    NIO与零拷贝
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.6" data-path="各种服务模型.html">
+            
+                <a href="各种服务模型.html">
+            
+                    
+                    各种服务模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.13.7" data-path="nio 与 netty 的简单示例.html">
+            
+                <a href="nio 与 netty 的简单示例.html">
+            
+                    
+                    nio 与 netty 的简单示例
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14" data-path="../Data-structure-algorithm/">
+            
+                <a href="../Data-structure-algorithm/">
+            
+                    
+                    data-structure-algorithm
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.14.1" data-path="../Data-structure-algorithm/数组和链表.html">
+            
+                <a href="../Data-structure-algorithm/数组和链表.html">
+            
+                    
+                    数组和链表
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14.2" data-path="../Data-structure-algorithm/LRU缓存淘汰算法.html">
+            
+                <a href="../Data-structure-algorithm/LRU缓存淘汰算法.html">
+            
+                    
+                    LRU缓存淘汰算法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14.3" data-path="../Data-structure-algorithm/字符串匹配算法.html">
+            
+                <a href="../Data-structure-algorithm/字符串匹配算法.html">
+            
+                    
+                    字符串匹配算法
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15" data-path="../Other/">
+            
+                <a href="../Other/">
+            
+                    
+                    其他
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.15.1" data-path="../Other/遇到的问题.html">
+            
+                <a href="../Other/遇到的问题.html">
+            
+                    
+                    遇到的问题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.2" data-path="../Other/js引入静态文件.html">
+            
+                <a href="../Other/js引入静态文件.html">
+            
+                    
+                    js引入静态文件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.3" data-path="../Other/centos-mysql.html">
+            
+                <a href="../Other/centos-mysql.html">
+            
+                    
+                    centos-mysql
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >nio 与 netty 的简单示例</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="nio-&#x4E0E;-netty-&#x7684;&#x7B80;&#x5355;&#x793A;&#x4F8B;">nio &#x4E0E; netty &#x7684;&#x7B80;&#x5355;&#x793A;&#x4F8B;</h1>
+<blockquote>
+<p>&#x65F6;&#x95F4;&#xFF1A;2020/09/02</p>
+</blockquote>
+<p>&#x7B80;&#x5355;&#x7684; TCP &#x4F8B;&#x5B50;&#xFF0C;&#x5BA2;&#x6237;&#x7AEF;&#x5411;&#x670D;&#x52A1;&#x5668;&#x53D1;&#x9001;&#x6D88;&#x606F;&#xFF0C;&#x670D;&#x52A1;&#x5668;&#x63A5;&#x53D7;&#x5E76;&#x54CD;&#x5E94;</p>
+<h2 id="nio">nio</h2>
+<p>&#x670D;&#x52A1;&#x7AEF;&#xFF1A;</p>
+<p>NioEchoServer</p>
+<pre><code class="lang-java"><span class="hljs-comment">/**
+ * Echo &#x670D;&#x52A1;&#x7AEF;
+ *
+ * <span class="hljs-doctag">@author</span> qianxin
+ * <span class="hljs-doctag">@date</span> 2020/8/27
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NioEchoServer</span> </span>{
+    <span class="hljs-comment">/**
+     * &#x670D;&#x52A1;&#x7BA1;&#x9053;&#xFF0C;&#x7528;&#x6765;&#x5411;&#x5BA2;&#x6237;&#x7AEF;&#x63A5;&#x53D7;&#x6216;&#x53D1;&#x9001;&#x6570;&#x636E;
+     */</span>
+    <span class="hljs-keyword">private</span> ServerSocketChannel serverSocketChannel;
+    <span class="hljs-comment">/**
+     * &#x591A;&#x8DEF;&#x590D;&#x7528;&#x5668;&#xFF0C;&#x7528;&#x6765;&#x5411;&#x901A;&#x9053;&#x6CE8;&#x518C;&#x94FE;&#x63A5;&#x548C;&#x76D1;&#x542C;&#x901A;&#x9053;&#x4E8B;&#x4EF6;
+     */</span>
+    <span class="hljs-keyword">private</span> Selector selector;
+
+    <span class="hljs-comment">/**
+     * &#x670D;&#x52A1;&#x7AEF;&#x53E3;
+     */</span>
+    <span class="hljs-keyword">private</span> Integer port;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">NioEchoServer</span><span class="hljs-params">(Integer port)</span> </span>{
+        <span class="hljs-keyword">this</span>.port = port;
+        initServer();
+    }
+
+    <span class="hljs-comment">/**
+     * &#x521D;&#x59CB;&#x5316;&#x53C2;&#x6570;&#x7BA1;&#x9053;&#x3001;&#x591A;&#x8DEF;&#x590D;&#x7528;&#x5668;&#x3001;&#x6CE8;&#x518C;&#x8FDE;&#x63A5;&#x4E8B;&#x4EF6;
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">initServer</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-comment">//&#x5F00;&#x542F;&#x670D;&#x52A1;&#x7BA1;&#x9053;</span>
+        <span class="hljs-keyword">try</span> {
+            serverSocketChannel = ServerSocketChannel.open();
+            <span class="hljs-comment">//&#x5F00;&#x542F;&#x591A;&#x8DEF;&#x590D;&#x7528;&#x9009;&#x62E9;&#x5668;</span>
+            selector = Selector.open();
+            <span class="hljs-comment">//&#x7ED1;&#x5B9A;&#x7AEF;&#x53E3;</span>
+            serverSocketChannel.socket().bind(<span class="hljs-keyword">new</span> InetSocketAddress(port));
+            <span class="hljs-comment">//&#x8BBE;&#x7F6E;IO&#x6A21;&#x5F0F;&#x4E3A;&#x975E;&#x963B;&#x585E;</span>
+            serverSocketChannel.configureBlocking(<span class="hljs-keyword">false</span>);
+            <span class="hljs-comment">//&#x628A;&#x7BA1;&#x9053;&#x6CE8;&#x518C;&#x5230;&#x591A;&#x8DEF;&#x590D;&#x7528;&#x9009;&#x62E9;&#x5668;&#x4E0A;&#xFF0C;&#x76D1;&#x542C;&#x5BA2;&#x6237;&#x7AEF;&#x8FDE;&#x63A5;&#x4E8B;&#x4EF6;</span>
+            serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
+        } <span class="hljs-keyword">catch</span> (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">start</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">new</span> Thread(<span class="hljs-keyword">new</span> NioSelectorHandler(selector)).start();
+        System.out.println(<span class="hljs-string">&quot;&#x670D;&#x52A1;&#x542F;&#x52A8;port=&quot;</span> + port);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+        NioEchoServer myNioServer = <span class="hljs-keyword">new</span> NioEchoServer(<span class="hljs-number">9000</span>);
+        myNioServer.start();
+    }
+}
+</code></pre>
+<p>NioSelectorHandler</p>
+<pre><code class="lang-java"><span class="hljs-comment">/**
+ * <span class="hljs-doctag">@author</span> qianxin
+ * <span class="hljs-doctag">@date</span> 2020/8/27
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NioSelectorHandler</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Runnable</span> </span>{
+    <span class="hljs-keyword">private</span> Selector selector;
+    <span class="hljs-keyword">private</span> ByteBuffer readBuffer;
+    <span class="hljs-keyword">private</span> ByteBuffer writeBuffer;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">NioSelectorHandler</span><span class="hljs-params">(Selector selector)</span> </span>{
+        <span class="hljs-keyword">this</span>.selector = selector;
+        <span class="hljs-keyword">this</span>.readBuffer = ByteBuffer.allocate(<span class="hljs-number">1024</span>);
+        <span class="hljs-keyword">this</span>.writeBuffer = ByteBuffer.allocate(<span class="hljs-number">1024</span>);
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">while</span> (<span class="hljs-keyword">true</span>) {
+            <span class="hljs-keyword">try</span> {
+                <span class="hljs-comment">//&#x5F00;&#x59CB;&#x76D1;&#x542C;</span>
+                <span class="hljs-keyword">int</span> keyNumber = selector.select();
+                Set&lt;SelectionKey&gt; selectionKeys = selector.selectedKeys();
+                Iterator&lt;SelectionKey&gt; selectionKeyIterator = selectionKeys.iterator();
+                SelectionKey selectionKey;
+                <span class="hljs-keyword">while</span> (selectionKeyIterator.hasNext()) {
+                    System.out.println(<span class="hljs-string">&quot;&#x4E00;&#x4E2A;&#x4E8B;&#x4EF6;&#x5C31;&#x7EEA;&quot;</span>);
+                    selectionKey = selectionKeyIterator.next();
+                    <span class="hljs-comment">//&#x5904;&#x7406;&#x5C31;&#x7EEA;&#x4E8B;&#x4EF6;</span>
+                    process(selectionKey);
+                    selectionKeyIterator.remove();
+                }
+            } <span class="hljs-keyword">catch</span> (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">process</span><span class="hljs-params">(SelectionKey selectionKey)</span> <span class="hljs-keyword">throws</span> IOException </span>{
+        <span class="hljs-keyword">if</span> (!selectionKey.isValid()) {
+            <span class="hljs-keyword">return</span>;
+        }
+        <span class="hljs-keyword">try</span> {
+            <span class="hljs-comment">//&#x5904;&#x7406;&#x5BA2;&#x6237;&#x7AEF;&#x8FDE;&#x63A5;&#x5C31;&#x7EEA;&#x4E8B;&#x4EF6;</span>
+            <span class="hljs-keyword">if</span> (selectionKey.isAcceptable()) {
+                System.out.println(<span class="hljs-string">&quot;&#x4E0E;&#x5BA2;&#x6237;&#x7AEF;&#x5DF2;&#x7ECF;&#x5EFA;&#x7ACB;&#x8FDE;&#x63A5;&#x4E86;&#xFF01;&#xFF01;&#xFF01;&quot;</span>);
+                <span class="hljs-comment">//&#x901A;&#x8FC7; selectionKey &#x83B7;&#x53D6;&#x670D;&#x52A1;&#x7AEF;&#x901A;&#x9053;</span>
+                <span class="hljs-comment">//&#x8FD9;&#x4E2A;serverSocketChannel &#x5C31;&#x662F;&#x521D;&#x59CB;&#x5316;&#x670D;&#x52A1;&#x5668;&#x65F6;&#x7684;&#x90A3;&#x4E2A;serverSocketChannel</span>
+                ServerSocketChannel channel = (ServerSocketChannel) selectionKey.channel();
+                <span class="hljs-comment">//&#x670D;&#x52A1;&#x7AEF;&#x83B7;&#x53D6;&#x8FD9;&#x4E2A;&#x5230;channel&#x7684;Socket&#x7684;&#x8FDE;&#x63A5;</span>
+                SocketChannel accept = channel.accept();
+                accept.configureBlocking(<span class="hljs-keyword">false</span>);
+                <span class="hljs-comment">//&#x8FDE;&#x63A5;&#x6210;&#x529F;&#x540E;&#xFF0C;&#x5F80; selector &#x6CE8;&#x518C;&#x5BF9;&#x5E94;&#x901A;&#x9053;&#x7684; OP_READ &#x8BFB;&#x53D6;&#x4E8B;&#x4EF6;</span>
+                accept.register(selector, SelectionKey.OP_READ);
+            }
+            <span class="hljs-comment">//&#x5904;&#x7406;&#x6570;&#x636E;&#x8BFB;&#x53D6;&#x5C31;&#x7EEA;&#x4E8B;&#x4EF6;</span>
+            <span class="hljs-keyword">if</span> (selectionKey.isReadable()) {
+                <span class="hljs-comment">//socketChannel&#x5C31;&#x662F;&#x8FDE;&#x63A5;&#x65F6;accept&#x7684;channel</span>
+                SocketChannel socketChannel = (SocketChannel) selectionKey.channel();
+                <span class="hljs-comment">//&#x5C06;&#x901A;&#x9053;&#x4E2D;&#x7684;&#x6570;&#x636E;&#x5199;&#x5165;&#x5230;&#x7F13;&#x5B58;&#xFF1B;</span>
+                readBuffer.clear();
+                <span class="hljs-keyword">int</span> size = socketChannel.read(readBuffer);
+                readBuffer.flip();
+                <span class="hljs-keyword">if</span> (size &gt; <span class="hljs-number">0</span>) {
+                    <span class="hljs-keyword">byte</span>[] bytes = <span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[readBuffer.remaining()];
+                    readBuffer.get(bytes);
+                    String content = <span class="hljs-keyword">new</span> String(bytes);
+                    <span class="hljs-comment">//</span>
+                    System.out.println(<span class="hljs-string">&quot;&#x6536;&#x5230;&#x6765;&#x81EA;&quot;</span> + socketChannel.getRemoteAddress() + <span class="hljs-string">&quot;&#x7684;&#x6D88;&#x606F;&#xFF1A;&quot;</span> + content);
+                    <span class="hljs-comment">//&#x54CD;&#x5E94;&#x6D88;&#x606F;&#x5BA2;&#x6237;&#x7AEF;&#x6D88;&#x606F;socketChannel</span>
+                    writeBuffer.clear();
+                    writeBuffer.put(content.getBytes(<span class="hljs-string">&quot;UTF-8&quot;</span>));
+                    writeBuffer.flip();
+                    <span class="hljs-comment">//&#x56DE;&#x5199;&#x6D88;&#x606F;</span>
+                    socketChannel.write(writeBuffer);
+                    System.out.println(<span class="hljs-string">&quot;&#x6D88;&#x606F;&#x5DF2;&#x56DE;&#x5199;&quot;</span>);
+                } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (size &lt; <span class="hljs-number">0</span>) {
+                    System.out.println(<span class="hljs-string">&quot;&#x4E0E;&#x5BA2;&#x6237;&#x7AEF;&#x8FDE;&#x63A5;&#x65AD;&#x5F00;&quot;</span>);
+                    socketChannel.close();
+                    selectionKey.cancel();
+                } <span class="hljs-keyword">else</span> {
+                    <span class="hljs-keyword">return</span>;
+                }
+            }
+        } <span class="hljs-keyword">catch</span> (IOException e) {
+            selectionKey.cancel();
+            selectionKey.channel().close();
+            System.out.println(<span class="hljs-string">&quot;&#x6709;&#x4E00;&#x4E2A;&#x8FDE;&#x63A5;&#x65AD;&#x5F00;&#x4E86;&quot;</span>);
+        }
+    }
+}
+</code></pre>
+<p>&#x5BA2;&#x6237;&#x7AEF;</p>
+<p>NioEchoClient</p>
+<pre><code class="lang-Java"><span class="hljs-comment">/**
+ * <span class="hljs-doctag">@author</span> qianxin
+ * <span class="hljs-doctag">@date</span> 2020/8/27
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NioEchoClient</span> </span>{
+    <span class="hljs-keyword">private</span> SocketChannel socketChannel;
+
+    <span class="hljs-keyword">private</span> Integer port;
+
+    <span class="hljs-keyword">private</span> String host;
+
+    <span class="hljs-keyword">private</span> ByteBuffer readBuffer;
+
+    <span class="hljs-keyword">private</span> ByteBuffer writeBuffer;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">NioEchoClient</span><span class="hljs-params">(String host, Integer port)</span> </span>{
+        <span class="hljs-keyword">this</span>.host = host;
+        <span class="hljs-keyword">this</span>.port = port;
+        readBuffer = ByteBuffer.allocate(<span class="hljs-number">1024</span>);
+        writeBuffer = ByteBuffer.allocate(<span class="hljs-number">1024</span>);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">connect</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">try</span> {
+            socketChannel = SocketChannel.open();
+            socketChannel.connect(<span class="hljs-keyword">new</span> InetSocketAddress(host, port));
+            BufferedReader bufferedReader = <span class="hljs-keyword">new</span> BufferedReader(<span class="hljs-keyword">new</span> InputStreamReader(System.in));
+            <span class="hljs-keyword">while</span> (<span class="hljs-keyword">true</span>) {
+                String line = bufferedReader.readLine();
+                <span class="hljs-keyword">if</span> (line != <span class="hljs-keyword">null</span> &amp;&amp; !line.equals(<span class="hljs-string">&quot;&quot;</span>)) {
+                    <span class="hljs-comment">//&#x5411;writeBuffer&#x4E2D;&#x5199;&#x6570;&#x636E;</span>
+                    writeBuffer.put(line.getBytes());
+                    writeBuffer.flip();
+                    <span class="hljs-comment">//&#x5C06; writeBuffer&#x4E2D;&#x7684;&#x6570;&#x636E;&#x8BFB;&#x5230;channel&#x4E2D;</span>
+                    socketChannel.write(writeBuffer);
+                    <span class="hljs-comment">//&#x6E05;&#x7A7A;&#x7F13;&#x5B58;&#x6570;&#x636E;</span>
+                    writeBuffer.clear();
+                    System.out.println(<span class="hljs-string">&quot;&#x53D1;&#x9001;&#x6570;&#x636E;&#x5B8C;&#x6BD5;&#xFF01;&#xFF01;&#xFF01;&quot;</span>);
+                }
+                <span class="hljs-comment">//&#x4ECE;&#x670D;&#x52A1;&#x7AEF;&#x53BB;&#x53D6;&#x6570;&#x636E;</span>
+                readBuffer.clear();
+                <span class="hljs-comment">//&#x4ECE;channel&#x4E2D;&#x628A;&#x6570;&#x636E; &#x5199;&#x5165;&#x5230; readBuffer&#x4E2D;</span>
+                <span class="hljs-keyword">int</span> size = socketChannel.read(readBuffer);
+                <span class="hljs-keyword">if</span> (size &gt; <span class="hljs-number">0</span>) {
+                    readBuffer.flip();
+                    <span class="hljs-keyword">byte</span>[] result = <span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[readBuffer.remaining()];
+                    <span class="hljs-comment">//&#x8BFB;&#x53D6;</span>
+                    readBuffer.get(result);
+                    String content = <span class="hljs-keyword">new</span> String(result);
+                    System.out.println(<span class="hljs-string">&quot;&#x670D;&#x52A1;&#x7AEF;&#x54CD;&#x5E94;&#x56DE;&#x6765;&#x7684;&#x6570;&#x636E;&#xFF1A;&quot;</span> + content);
+                }
+            }
+        } <span class="hljs-keyword">catch</span> (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+        NioEchoClient nioEchoClient = <span class="hljs-keyword">new</span> NioEchoClient(<span class="hljs-string">&quot;127.0.0.1&quot;</span>, <span class="hljs-number">9000</span>);
+        nioEchoClient.connect();
+    }
+}
+</code></pre>
+<h2 id="netty">netty</h2>
+<p>&#x670D;&#x52A1;&#x7AEF;</p>
+<p>NettyServer</p>
+<pre><code class="lang-java"><span class="hljs-comment">/**
+ * <span class="hljs-doctag">@author</span> qxnekoo
+ * <span class="hljs-doctag">@date</span> 2020/8/26
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NettyServer</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> InterruptedException </span>{
+        <span class="hljs-comment">//&#x521B;&#x5EFA; BossGroup &#x548C; workerGroup</span>
+        <span class="hljs-comment">//&#x521B;&#x5EFA;&#x4E24;&#x4E2A;&#x7EBF;&#x7A0B;&#x7EC4; bossGroup &#x548C; workerGroup</span>
+        <span class="hljs-comment">//bossGroup &#x53EA;&#x662F;&#x5904;&#x7406;&#x8FDE;&#x63A5;&#x8BF7;&#x6C42;&#xFF0C;&#x771F;&#x6B63;&#x7684;&#x548C;&#x5BA2;&#x6237;&#x7AEF;&#x4E1A;&#x52A1;&#x5904;&#x7406;&#xFF0C;&#x4F1A;&#x4EA4;&#x7ED9; workerGroup &#x5B8C;&#x6210;</span>
+        <span class="hljs-comment">//bossGroup &#x548C; workerGroup &#x542B;&#x6709;&#x7684;&#x5B50;&#x7EBF;&#x7A0B;&#xFF08;NioEventLoop&#xFF09;&#x7684;&#x4E2A;&#x6570;</span>
+        <span class="hljs-comment">//&#x9ED8;&#x8BA4;&#x5B9E;&#x9645; cpu &#x6838;&#x6570; * 2</span>
+        <span class="hljs-comment">//&#x6309;&#x7167;&#x6211;&#x7684;&#x7406;&#x89E3; &#x8FD9; NioEventLoop &#x5176;&#x5B9E;&#x5C31;&#x662F;&#x4E00;&#x4E2A;&#x5355;&#x7EBF;&#x7A0B;&#x7684;&#x7EBF;&#x7A0B;&#x6C60;</span>
+        <span class="hljs-comment">//&#x5B83;&#x7684;&#x7EE7;&#x627F;&#x5173;&#x7CFB;</span>
+        <span class="hljs-comment">// SingleThreadEventLoop -&gt; SingleThreadEventExecutor -&gt; AbstractScheduledEventExecutor</span>
+        <span class="hljs-comment">// -&gt;AbstractEventExecutor -&gt; AbstractExecutorService -&gt; AbstractExecutorService</span>
+        <span class="hljs-comment">// -&gt;AbstractExecutorService &#x5B9E;&#x73B0;&#x4E86; ExecutorService &#x63A5;&#x53E3;</span>
+        NioEventLoopGroup bossGroup = <span class="hljs-keyword">new</span> NioEventLoopGroup(<span class="hljs-number">1</span>);
+        NioEventLoopGroup workerGroup = <span class="hljs-keyword">new</span> NioEventLoopGroup();
+
+        <span class="hljs-keyword">try</span> {
+            ServerBootstrap serverBootstrap = <span class="hljs-keyword">new</span> ServerBootstrap();
+            <span class="hljs-comment">//&#x8BBE;&#x7F6E;&#x4E24;&#x4E2A;&#x7EBF;&#x7A0B;&#x7EC4;</span>
+            serverBootstrap.group(bossGroup, workerGroup)
+                    <span class="hljs-comment">//&#x4F7F;&#x7528;NioServerSocketChannel &#x4F5C;&#x4E3A;&#x670D;&#x52A1;&#x5668;&#x901A;&#x9053;&#x5B9E;&#x73B0;</span>
+                    .channel(NioServerSocketChannel.class)
+                    <span class="hljs-comment">//&#x8BBE;&#x7F6E;&#x7EBF;&#x7A0B;&#x961F;&#x5217;&#x5F97;&#x5230;&#x8FDE;&#x63A5;&#x4E2A;&#x6570;</span>
+                    .option(ChannelOption.SO_BACKLOG, <span class="hljs-number">128</span>)
+                    <span class="hljs-comment">//&#x8BBE;&#x7F6E;&#x4FDD;&#x6301;&#x6D3B;&#x52A8;&#x8FDE;&#x63A5;&#x72B6;&#x6001;</span>
+                    .childOption(ChannelOption.SO_KEEPALIVE, <span class="hljs-keyword">true</span>)
+                    <span class="hljs-comment">//&#x8BE5;handler&#x5BF9;&#x5E94;bossGroup</span>
+                    <span class="hljs-comment">//.handler(null)</span>
+                    <span class="hljs-comment">//childHandler &#x5BF9;&#x5E94; workerHandler</span>
+                    .childHandler(<span class="hljs-keyword">new</span> ChannelInitializer&lt;SocketChannel&gt;() {
+                        <span class="hljs-meta">@Override</span>
+                        <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">initChannel</span><span class="hljs-params">(SocketChannel ch)</span> </span>{
+                            ch.pipeline().addLast(<span class="hljs-keyword">new</span> CustomNettyServerHandler());
+                        }
+                    });
+            <span class="hljs-comment">//&#x7ED1;&#x5B9A;&#x4E00;&#x4E2A;&#x7AEF;&#x53E3;&#x5E76;&#x540C;&#x6B65;&#xFF0C;&#x751F;&#x6210;&#x4E00;&#x4E2A; ChannelFuture &#x5BF9;&#x8C61; &#x542F;&#x52A8;&#x670D;&#x52A1;&#x5668;</span>
+            ChannelFuture channelFuture = serverBootstrap.bind(<span class="hljs-number">6668</span>).sync();
+            channelFuture.channel().closeFuture().sync();
+        } <span class="hljs-keyword">finally</span> {
+            workerGroup.shutdownGracefully();
+            bossGroup.shutdownGracefully();
+        }
+    }
+}
+</code></pre>
+<p>&#x81EA;&#x5B9A;&#x4E49;&#x670D;&#x52A1;&#x7AEF;&#x5904;&#x7406;handler:CustomNettyServerHandler</p>
+<pre><code class="lang-java"><span class="hljs-comment">/**
+ * &#x81EA;&#x5B9A;&#x4E49;&#x7684;&#x4E00;&#x4E2A;handler &#x9700;&#x8981;&#x7EE7;&#x627F; netty &#x7684;&#x4E00;&#x4E2A;&#x7C7B;
+ *
+ * <span class="hljs-doctag">@author</span> qxnekoo
+ * <span class="hljs-doctag">@date</span> 2020/8/26
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CustomNettyServerHandler</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ChannelInboundHandlerAdapter</span> </span>{
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Logger logger = LoggerFactory.getLogger(CustomNettyServerHandler.class);
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">channelRead</span><span class="hljs-params">(ChannelHandlerContext ctx, Object msg)</span> <span class="hljs-keyword">throws</span> Exception </span>{
+        <span class="hljs-comment">//&#x8FD9;&#x8FB9;&#x4F7F;&#x7528;&#x7684;&#x7EBF;&#x7A0B;&#x662F;&#x8F6E;&#x8BE2;&#x4F7F;&#x7528;&#x7684; &#x4E5F;&#x5C31;&#x662F; workGroup &#x4E2D;&#x7684;&#x7EBF;&#x7A0B;</span>
+        logger.info(<span class="hljs-string">&quot;&#x670D;&#x52A1;&#x5668;&#x8BFB;&#x53D6;&#x6570;&#x636E;&#x7684;&#x7EBF;&#x7A0B;:{}&quot;</span>, Thread.currentThread().getName());
+        <span class="hljs-comment">//&#x5F53;&#x51FA;&#x73B0;&#x975E;&#x5E38;&#x8017;&#x65F6;&#x7684;&#x64CD;&#x4F5C;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5C06;&#x5176;&#x5F02;&#x6B65;&#x6267;&#x884C;&#xFF0C;&#x6CA1;&#x6709;&#x5FC5;&#x8981;&#x5728;&#x8FD9;&#x8FB9;&#x7B49;&#x5F85;</span>
+        <span class="hljs-comment">//&#x4F46;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x662F;&#xFF0C;&#x6240;&#x8C13;&#x7684;&#x5F02;&#x6B65;&#x6267;&#x884C;&#x4E5F;&#x5C31;&#x662F;&#x5C06;&#x5176;&#x653E;&#x5165;&#x5230; nioEventLoop &#x7684; taskQueue &#x4E2D;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x7B49;&#x5F85;&#x961F;&#x5217;</span>
+        <span class="hljs-comment">//&#x56E0;&#x4E3A; nioEventLoop &#x5B9E;&#x9645;&#x4E0A;&#x662F;&#x4E00;&#x4E2A;&#x5355;&#x7EBF;&#x7A0B;&#x7684;&#x7EBF;&#x7A0B;&#x6C60;&#xFF0C;&#x6240;&#x4EE5;&#x5728;&#x6267;&#x884C;&#x5B8C; &#x4E0B;&#x9762;&#x7684; A &#x4EE3;&#x7801;&#x4E4B;&#x540E;&#x624D;&#x4F1A;&#x53BB;&#x6267;&#x884C;&#x8BE5;&#x4EFB;&#x52A1;</span>
+        ctx.channel().eventLoop().execute(() -&gt; {
+            <span class="hljs-keyword">try</span> {
+                Thread.sleep(<span class="hljs-number">10</span> * <span class="hljs-number">1000</span>);
+                logger.info(<span class="hljs-string">&quot;&#x4F11;&#x7720;&#x4E86;10&#x79D2;&#x949F;&#x54E6;&quot;</span>);
+            } <span class="hljs-keyword">catch</span> (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+        <span class="hljs-comment">//&#x5982;&#x679C;&#x6211;&#x5728;&#x8FD9;&#x8FB9;&#x518D;&#x52A0;&#x4E00;&#x4E2A;&#x8017;&#x65F6; 20 &#x79D2;&#x7684;&#x4EFB;&#x52A1;&#xFF0C;&#x90A3;&#x4E48;&#x8FD9;&#x4E2A;&#x4EFB;&#x52A1;&#x5176;&#x5B9E;&#x8981;&#x7B49;&#x5F85;&#x4E0A;&#x9762;&#x90A3;&#x4E2A;&#x8017;&#x65F6; 10 &#x79D2;&#x7684;&#x4EFB;&#x52A1;&#x7ED3;&#x675F;&#x624D;&#x4F1A;&#x6267;&#x884C;&#x5230;&#xFF0C;&#x56E0;&#x4E3A;&#x662F;&#x4E00;&#x4E2A;&#x5355;&#x7EBF;&#x7A0B;&#x7684;&#x7EBF;&#x7A0B;&#x6C60; </span>
+
+
+        <span class="hljs-comment">//schedule&#x4F1A;&#x63D0;&#x4EA4;&#x4E00;&#x4E2A;&#x5B9A;&#x65F6;&#x4EFB;&#x52A1; &#x7528;&#x7684;&#x4E5F;&#x662F;&#x540C;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#xFF0C;&#x4E0D;&#x8FC7;&#x5B83;&#x7684;&#x961F;&#x5217;&#x662F; scheduledTaskQueue</span>
+        <span class="hljs-comment">//&#x5C3D;&#x7BA1;&#x5982;&#x6B64;&#xFF0C;&#x7ECF;&#x8FC7;&#x6D4B;&#x8BD5;&#x53D1;&#x73B0;&#xFF0C;&#x540C;&#x4E00;&#x4E2A;eventLoop &#x4F1A;&#x4F18;&#x5148;&#x6267;&#x884C;&#x975E;&#x5B9A;&#x65F6;&#x4EFB;&#x52A1;&#xFF0C;&#x4F46;&#x5B9A;&#x65F6;&#x4EFB;&#x52A1;&#x7684;&#x5B9A;&#x65F6;&#x4F1A;&#x5728;&#x540E;&#x53F0;&#x8FDB;&#x884C;&#xFF0C;&#x5982;&#x679C;&#x975E;&#x5B9A;&#x65F6;&#x4EFB;&#x52A1;&#x7ED3;&#x675F;&#x4E86;&#xFF0C;&#x5B9A;&#x65F6;&#x4E5F;&#x5230;&#x4E86;&#xFF0C;&#x4F1A;&#x4E00;&#x80A1;&#x8111;&#x513F;&#x7684;&#x53BB;&#x6267;&#x884C;&#x5B9A;&#x65F6;&#x4EFB;&#x52A1;</span>
+        <span class="hljs-comment">//&#x4E5F;&#x5C31;&#x662F;&#x8BF4; &#x5BF9;&#x4E8E;&#x4EFB;&#x52A1;&#x7684;&#x6267;&#x884C;&#xFF0C;&#x7531;&#x4E8E;&#x662F;&#x5355;&#x7EBF;&#x7A0B;&#x7684; &#x6240;&#x4EE5;&#x54EA;&#x4E2A;&#x5148;&#x653E;&#x5165;&#x7B49;&#x5F85;&#x961F;&#x5217;&#x7684;&#x80AF;&#x5B9A;&#x662F;&#x4F18;&#x5148;&#x6267;&#x884C;&#x7684;</span>
+        <span class="hljs-comment">//&#x53EA;&#x4E0D;&#x8FC7;&#x4F1A;&#x5148;&#x53BB;&#x975E;&#x5B9A;&#x65F6;&#x4EFB;&#x52A1;&#x7684;&#x961F;&#x5217;taskQueue&#x53BB;&#x53D6;&#x4EFB;&#x52A1;  &#x53D6;&#x5B8C;&#x518D;&#x5230;&#x5B9A;&#x65F6;&#x4EFB;&#x52A1;&#x7684;&#x961F;&#x5217;scheduledTaskQueue&#x53D6;&#x4EFB;&#x52A1; &#x5B9A;&#x65F6;&#x961F;&#x5217;&#x91CC;&#x7684;&#x987A;&#x5E8F;&#x548C;&#x5B9A;&#x7684;&#x65F6;&#x95F4;&#x6709;&#x5173;</span>
+        <span class="hljs-comment">// ctx.channel().eventLoop().schedule(() -&gt; {</span>
+        <span class="hljs-comment">//    try {</span>
+        <span class="hljs-comment">//       logger.info(&quot;&#x5230;&#x5F02;&#x6B65;&#x91CC;&#x9762;&#x4E86;&#xFF01;&quot;);</span>
+
+        <span class="hljs-comment">//        logger.info(&quot;&#x4F11;&#x7720;&#x4E86;5&#x79D2;&#x949F;&#x54E6;&quot;);</span>
+        <span class="hljs-comment">//    } catch (Exception e) {</span>
+        <span class="hljs-comment">//        e.printStackTrace();</span>
+        <span class="hljs-comment">//   }</span>
+       <span class="hljs-comment">//  }, 15, TimeUnit.SECONDS);</span>
+        <span class="hljs-comment">//&#x901A;&#x9053;</span>
+<span class="hljs-comment">//        System.out.println(ctx.channel());</span>
+        <span class="hljs-comment">//&#x7BA1;&#x9053;</span>
+<span class="hljs-comment">//        System.out.println(ctx.pipeline());</span>
+        <span class="hljs-comment">//&#x5C06;msg &#x8F6C;&#x6210;&#x4E00;&#x4E2A; bytebuf</span>
+        <span class="hljs-comment">//A &#x4EE3;&#x7801;</span>
+
+        ByteBuf bytebuf = (ByteBuf) msg;
+        System.out.println(<span class="hljs-string">&quot;&#x8FD9;&#x91CC;&#x662F;&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x5BA2;&#x6237;&#x7AEF;&#x53D1;&#x9001;&#x7684;&#x6D88;&#x606F;&#xFF1A;&quot;</span> + bytebuf.toString(CharsetUtil.UTF_8));
+
+    }
+
+    <span class="hljs-comment">/**
+     * &#x6570;&#x636E;&#x8BFB;&#x53D6;&#x5B8C;&#x6BD5;&#x4E4B;&#x540E;&#x89E6;&#x53D1;
+     */</span>
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">channelReadComplete</span><span class="hljs-params">(ChannelHandlerContext ctx)</span> <span class="hljs-keyword">throws</span> Exception </span>{
+        <span class="hljs-comment">//&#x670D;&#x52A1;&#x7AEF;&#x8BFB;&#x53D6;&#x5B8C;&#x6BD5;&#x4E4B;&#x540E;&#x518D;&#x54CD;&#x5E94;&#x5BA2;&#x6237;&#x7AEF;</span>
+        ctx.writeAndFlush(Unpooled.copiedBuffer(<span class="hljs-string">&quot;hello,&#x5BA2;&#x6237;&#x7AEF;&quot;</span>, CharsetUtil.UTF_8));
+    }
+
+    <span class="hljs-comment">/**
+     * &#x5904;&#x7406;&#x5F02;&#x5E38;  &#x9700;&#x8981;&#x5173;&#x95ED;&#x901A;&#x9053;
+     *
+     * <span class="hljs-doctag">@param</span> ctx
+     * <span class="hljs-doctag">@param</span> cause
+     * <span class="hljs-doctag">@throws</span> Exception
+     */</span>
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">exceptionCaught</span><span class="hljs-params">(ChannelHandlerContext ctx, Throwable cause)</span> <span class="hljs-keyword">throws</span> Exception </span>{
+        ctx.close();
+    }
+}
+</code></pre>
+<p>&#x5BA2;&#x6237;&#x7AEF;</p>
+<p>NettyClient</p>
+<pre><code class="lang-java"><span class="hljs-comment">/**
+ * <span class="hljs-doctag">@author</span> qxnekoo
+ * <span class="hljs-doctag">@date</span> 2020/8/26
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NettyClient</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> InterruptedException </span>{
+        EventLoopGroup group = <span class="hljs-keyword">new</span> NioEventLoopGroup();
+        <span class="hljs-comment">//&#x4F7F;&#x7528;&#x7684;&#x662F;BootStrap&#x800C;&#x4E0D;&#x662F;ServerBootStrap</span>
+        Bootstrap bootstrap = <span class="hljs-keyword">new</span> Bootstrap();
+        <span class="hljs-keyword">try</span> {
+
+            bootstrap.group(group)
+                    .channel(NioSocketChannel.class)
+                    .handler(<span class="hljs-keyword">new</span> ChannelInitializer&lt;SocketChannel&gt;() {
+                        <span class="hljs-meta">@Override</span>
+                        <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">initChannel</span><span class="hljs-params">(SocketChannel ch)</span> <span class="hljs-keyword">throws</span> Exception </span>{
+                            ch.pipeline().addLast(<span class="hljs-keyword">new</span> CustomNettyClientHandler());
+                        }
+                    });
+            System.out.println(<span class="hljs-string">&quot;&#x5BA2;&#x6237;&#x7AEF;ok&#x3002;&#x3002;&quot;</span>);
+            <span class="hljs-comment">//&#x542F;&#x52A8;&#x5BA2;&#x6237;&#x7AEF;&#x53BB;&#x8FDE;&#x63A5;&#x670D;&#x52A1;&#x5668;</span>
+            <span class="hljs-comment">//ChannelFuture &#x6D89;&#x53CA;&#x5230; netty&apos;&#x7684;&#x5F02;&#x6B65;&#x6A21;&#x578B;</span>
+            ChannelFuture channelFuture = bootstrap.connect(
+                    <span class="hljs-string">&quot;127.0.0.1&quot;</span>, <span class="hljs-number">6668</span>
+            ).sync();
+            <span class="hljs-comment">//&#x5173;&#x95ED;&#x901A;&#x9053;&#x662F;&#x7ED9;&#x4E0A;&#x76D1;&#x542C;</span>
+            channelFuture.channel().closeFuture().sync();
+        } <span class="hljs-keyword">finally</span> {
+            group.shutdownGracefully();
+        }
+    }
+}
+</code></pre>
+<p>&#x5BA2;&#x6237;&#x7AEF;&#x5904;&#x7406;handler:CustomNettyClientHandler</p>
+<pre><code class="lang-java"><span class="hljs-comment">/**
+ * <span class="hljs-doctag">@author</span> qxnekoo
+ * <span class="hljs-doctag">@date</span> 2020/8/26
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CustomNettyClientHandler</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ChannelInboundHandlerAdapter</span> </span>{
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Logger logger = LoggerFactory.getLogger(CustomNettyClientHandler.class);
+    <span class="hljs-comment">/**
+     * &#x5F53;&#x901A;&#x9053;&#x5C31;&#x7EEA;&#x7684;&#x65F6;&#x5019;&#x4F1A;&#x89E6;&#x53D1;&#x8BE5;&#x65B9;&#x6CD5;
+     *
+     * <span class="hljs-doctag">@param</span> ctx
+     * <span class="hljs-doctag">@throws</span> Exception
+     */</span>
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">channelActive</span><span class="hljs-params">(ChannelHandlerContext ctx)</span> <span class="hljs-keyword">throws</span> Exception </span>{
+        ctx.writeAndFlush(Unpooled.copiedBuffer(<span class="hljs-string">&quot;hello,server:&#x55B5;&quot;</span>, CharsetUtil.UTF_8));
+    }
+
+    <span class="hljs-comment">/**
+     * &#x5F53;&#x901A;&#x9053;&#x6709;&#x8BFB;&#x53D6;&#x4E8B;&#x4EF6;&#x65F6;&#xFF0C;&#x4F1A;&#x89E6;&#x53D1;
+     *
+     * <span class="hljs-doctag">@param</span> ctx
+     * <span class="hljs-doctag">@param</span> msg
+     * <span class="hljs-doctag">@throws</span> Exception
+     */</span>
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">channelRead</span><span class="hljs-params">(ChannelHandlerContext ctx, Object msg)</span> <span class="hljs-keyword">throws</span> Exception </span>{
+        ByteBuf buf = (ByteBuf) msg;
+        logger.info(<span class="hljs-string">&quot;&#x6B64;&#x65F6;&#x7684;&#x7EBF;&#x7A0B;&#x4E3A;&#xFF1A;{}&quot;</span>,Thread.currentThread().getName());
+        System.out.println(<span class="hljs-string">&quot;&#x8FD9;&#x91CC;&#x662F;&#x5BA2;&#x6237;&#x7AEF;&#xFF0C;&#x670D;&#x52A1;&#x5668;&#x56DE;&#x590D;&#x7684;&#x6D88;&#x606F;&quot;</span> + buf.toString(CharsetUtil.UTF_8));
+        System.out.println(<span class="hljs-string">&quot;&#x670D;&#x52A1;&#x5668;&#x7684;&#x5730;&#x5740;&#xFF1A;&quot;</span> + ctx.channel().remoteAddress());
+
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">exceptionCaught</span><span class="hljs-params">(ChannelHandlerContext ctx, Throwable cause)</span> <span class="hljs-keyword">throws</span> Exception </span>{
+        ctx.close();
+    }
+}
+</code></pre>
+<h2 id="&#x65B9;&#x6848;&#x8BF4;&#x660E;">&#x65B9;&#x6848;&#x8BF4;&#x660E;</h2>
+<ol>
+<li>Netty &#x62BD;&#x8C61;&#x51FA;&#x4E24;&#x7EC4;&#x7EBF;&#x7A0B;&#x6C60; group&#xFF0C;&#x6BCF;&#x4E2A; group &#x4E2D;&#x7684;&#x7EBF;&#x7A0B;&#x6C60;&#x90FD;&#x662F;&#x5355;&#x7EBF;&#x7A0B;&#x7684;&#xFF0C;BossGroup &#x8D1F;&#x8D23;&#x63A5;&#x6536;&#x5BA2;&#x6237;&#x7AEF;&#x7684;&#x8FDE;&#x63A5;&#xFF0C;WorkGroup &#x4E13;&#x95E8;&#x8D1F;&#x8D23;&#x7F51;&#x7EDC;&#x8BFB;&#x5199;&#x64CD;&#x4F5C;&#x3002;</li>
+<li>NioEventLoop &#x8868;&#x793A;&#x4E00;&#x4E2A;&#x4E0D;&#x65AD;&#x5FAA;&#x73AF;&#x6267;&#x884C;&#x5904;&#x7406;&#x4EFB;&#x52A1;&#x7684;&#x7EBF;&#x7A0B;&#xFF0C;&#x6BCF;&#x4E2A; NioEventLoop &#x90FD;&#x6709;&#x4E00;&#x4E2A; selector&#xFF0C;&#x7528;&#x4E8E;&#x76D1;&#x542C;&#x7ED1;&#x5B9A;&#x5728;&#x5176;&#x4E0A;&#x7684; socket &#x7F51;&#x7EDC;&#x901A;&#x9053;&#x3002;</li>
+<li><p>NioEventLoop &#x5185;&#x90E8;&#x91C7;&#x7528;&#x4E32;&#x884C;&#x5316;&#x8BBE;&#x8BA1;&#xFF0C;&#x4ECE;&#x6D88;&#x606F;&#x7684;&#x8BFB;&#x53D6;&#x3001;&#x89E3;&#x7801;&#x3001;&#x5904;&#x7406;&#x3001;&#x7F16;&#x7801;&#x3001;&#x53D1;&#x9001;&#xFF0C;&#x59CB;&#x7EC8;&#x7531; IO &#x7EBF;&#x7A0B; NioEventLoop &#x8D1F;&#x8D23;&#x3002;</p>
+</li>
+<li><p>NioEventLoopGroup &#x4E0B;&#x5305;&#x542B;&#x591A;&#x4E2A; NioEventLoop&#xFF08;&#x5355;&#x7EBF;&#x7A0B;&#x7684;&#x7EBF;&#x7A0B;&#x6C60;&#xFF09;</p>
+</li>
+<li>&#x6BCF;&#x4E2A; NioEventLoop &#x7684; Selector &#x4E0A;&#x53EF;&#x4EE5;&#x6CE8;&#x518C;&#x76D1;&#x542C;&#x591A;&#x4E2A; NioChannel</li>
+<li>&#x6BCF;&#x4E2A; NioChannel &#x53EA;&#x4F1A;&#x7ED1;&#x5B9A;&#x5728;&#x552F;&#x4E00;&#x7684; NioEventLoop &#x4E0A;</li>
+<li>&#x6BCF;&#x4E2A; NioChannel &#x90FD;&#x7ED1;&#x5B9A;&#x6709;&#x4E00;&#x4E2A;&#x81EA;&#x5DF1;&#x7684; ChannelPipeline</li>
+</ol>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="各种服务模型.html" class="navigation navigation-prev " aria-label="Previous page: 各种服务模型">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../Data-structure-algorithm/" class="navigation navigation-next " aria-label="Next page: data-structure-algorithm">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"nio 与 netty 的简单示例","level":"1.13.7","depth":2,"next":{"title":"data-structure-algorithm","level":"1.14","depth":1,"path":"Data-structure-algorithm/README.md","ref":"Data-structure-algorithm/README.md","articles":[{"title":"数组和链表","level":"1.14.1","depth":2,"path":"Data-structure-algorithm/数组和链表.md","ref":"Data-structure-algorithm/数组和链表.md","articles":[]},{"title":"LRU缓存淘汰算法","level":"1.14.2","depth":2,"path":"Data-structure-algorithm/LRU缓存淘汰算法.md","ref":"Data-structure-algorithm/LRU缓存淘汰算法.md","articles":[]},{"title":"字符串匹配算法","level":"1.14.3","depth":2,"path":"Data-structure-algorithm/字符串匹配算法.md","ref":"Data-structure-algorithm/字符串匹配算法.md","articles":[]}]},"previous":{"title":"各种服务模型","level":"1.13.6","depth":2,"path":"Netty/各种服务模型.md","ref":"Netty/各种服务模型.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["expandable-chapters"],"pluginsConfig":{"expandable-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Netty/nio 与 netty 的简单示例.md","mtime":"2021-01-08T02:28:57.626Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-05-22T09:48:46.612Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
