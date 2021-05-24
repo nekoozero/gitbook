@@ -1954,6 +1954,85 @@
 </code></pre>
 <p>RK &#x7B97;&#x6CD5;&#x8BA1;&#x7B97;&#x5355;&#x4E2A;&#x5B50;&#x4E32;&#x7684; hash &#x7684;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x662F; O(n)&#xFF0C;&#x4F46;&#x7531;&#x4E8E;&#x540E;&#x7EED;&#x7684;&#x5B50;&#x4E32; hash &#x662F;&#x589E;&#x91CF;&#x8BA1;&#x7B97;&#xFF0C;&#x6240;&#x4EE5;&#x603B;&#x7684;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x4ECD;&#x7136;&#x662F; O(n)&#x3002;</p>
 <p>&#x7F3A;&#x70B9;&#x5C31;&#x662F;&#x54C8;&#x5E0C;&#x51B2;&#x7A81;&#xFF0C;&#x6BCF;&#x4E00;&#x6B21;&#x54C8;&#x5E0C;&#x51B2;&#x7A81;&#x7684;&#x65F6;&#x5019;&#xFF0C;RK &#x7B97;&#x6CD5;&#x90FD;&#x8981;&#x5BF9;&#x5B50;&#x4E32;&#x548C;&#x6A21;&#x5F0F;&#x4E32;&#x8FDB;&#x884C;&#x9010;&#x4E2A;&#x5B57;&#x7B26;&#x7684;&#x6BD4;&#x8F83;&#xFF0C;&#x5982;&#x679C;&#x51B2;&#x7A81;&#x592A;&#x591A;&#x4E86;&#xFF0C;RK &#x7B97;&#x6CD5;&#x5C31;&#x9000;&#x5316;&#x6210;&#x4E86; BF &#x7B97;&#x6CD5;&#x3002;</p>
+<h2 id="bm-&#x7B97;&#x6CD5;">BM &#x7B97;&#x6CD5;</h2>
+<p><strong>&#x574F;&#x5B57;&#x7B26;&#x89C4;&#x5219;</strong>:&#x6A21;&#x5F0F;&#x4E32;&#x548C;&#x5B50;&#x4E32;&#x4E2D;&#x4E0D;&#x5339;&#x914D;&#x7684;&#x5B57;&#x7B26;&#x3002;</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9OdE81c2lhbEpaR3A5M2xaRHZJVWljbWJ2aWFBVXB6SnpvVkx2d2V4WE11YjdtS2dlZGNmZ2xpY1JqaWNmY3duWkdMeXhGZUI5QmY0ODJ0aWFvQnMxMlczT0JYZy82NDA?x-oss-process=image/format,png" alt="img"></p>
+<p>&#x4E0A;&#x9762;&#x7684; T &#x5C31;&#x662F;&#x574F;&#x5B57;&#x7B26;&#xFF0C;&#x68C0;&#x6D4B;&#x987A;&#x5E8F;&#x662F;&#x4ECE;&#x540E;&#x5F80;&#x524D;&#x68C0;&#x6D4B;&#x3002;</p>
+<blockquote>
+<p>&#x574F;&#x5B57;&#x7B26;&#x7684;&#x4F4D;&#x7F6E;&#x8D8A;&#x9760;&#x53F3;&#xFF0C;&#x4E0B;&#x4E00;&#x8F6E;&#x6A21;&#x5F0F;&#x4E32;&#x7684;&#x632A;&#x52A8;&#x8DE8;&#x5EA6;&#x5C31;&#x53EF;&#x80FD;&#x8D8A;&#x957F;&#xFF0C;&#x8282;&#x7701;&#x7684;&#x6BD4;&#x8F83;&#x6B21;&#x6570;&#x4E5F;&#x5C31;&#x8D8A;&#x591A;&#x3002;&#x8FD9;&#x5C31;&#x662F;BM&#x7B97;&#x6CD5;&#x4ECE;&#x53F3;&#x5411;&#x5DE6;&#x68C0;&#x6D4B;&#x7684;&#x597D;&#x5904;&#x3002;</p>
+</blockquote>
+<p><strong>&#x53EA;&#x6709;&#x6A21;&#x5F0F;&#x4E32;&#x4E2D;&#x548C;&#x574F;&#x5B57;&#x7B26; T &#x5BF9;&#x9F50;&#x7684;&#x4F4D;&#x7F6E;&#x4E5F;&#x662F; T &#x5B57;&#x7B26;&#x7684;&#x60C5;&#x51B5;&#x4E0B;</strong>&#xFF0C;&#x4E24;&#x8005;&#x624D;&#x6709;&#x5339;&#x914D;&#x7684;&#x53EF;&#x80FD;&#x3002;</p>
+<p>&#x76F4;&#x63A5;&#x628A;&#x6A21;&#x5F0F;&#x4E32;&#x5F53;&#x4E2D;&#x7684;&#x4ECE;&#x540E;&#x5F80;&#x524D;&#x7684;&#x4E0A;&#x4E00;&#x4E2A;&#x5B57;&#x7B26; T &#x548C;&#x4E3B;&#x4E32;&#x7684;&#x574F;&#x5B57;&#x7B26;&#x5BF9;&#x9F50;&#xFF0C;&#x8FDB;&#x884C;&#x4E0B;&#x4E00;&#x8F6E;&#x7684;&#x6BD4;&#x8F83;&#xFF1A;</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9OdE81c2lhbEpaR3A5M2xaRHZJVWljbWJ2aWFBVXB6SnpvVm9hZnNtZ1ZBcXdnUVl1SXBaS2liaWFHaWFqNHhXNHkyZnVNVEdramljTWZ6UkFLWWIxeWljNExBSnd3LzY0MA?x-oss-process=image/format,png" alt="img"></p>
+<p>&#x5982;&#x679C;&#x574F;&#x5B57;&#x7B26;&#x5728;&#x6A21;&#x5F0F;&#x4E32;&#x4E2D;&#x4E0D;&#x5B58;&#x5728;&#x7684;&#x8BDD;&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x9700;&#x8981;&#x632A;&#x5230;&#x4E3B;&#x4E32;&#x574F;&#x5B57;&#x7B26;&#x7684;&#x4E0B;&#x4E00;&#x4F4D;&#xFF1A;</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9OdE81c2lhbEpaR3A5M2xaRHZJVWljbWJ2aWFBVXB6SnpvVkFmcEdlem9JTUlpY3Z5akd4SzV1NHVSSTNBWmhnZDNpYmdUMmt4ZDZSYzBsNUpmajFpYTJHNkQ4dy82NDA?x-oss-process=image/format,png" alt="img"></p>
+<h3 id="&#x4EE3;&#x7801;&#x793A;&#x4F8B;">&#x4EE3;&#x7801;&#x793A;&#x4F8B;</h3>
+<p>&#x574F;&#x5B57;&#x7B26;&#x89C4;&#x5219;&#x4E0B;&#x7684;&#x4EE3;&#x7801;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Bm</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+        String str = <span class="hljs-string">&quot;ABCDCD&quot;</span>;
+        String pattern = <span class="hljs-string">&quot;CDC&quot;</span>;
+        System.out.println(boyerMoore(str, pattern));
+    }
+
+    <span class="hljs-comment">/**
+     * &#x5728;&#x6A21;&#x5F0F;&#x4E32;&#x4E2D;&#xFF0C;&#x67E5;&#x627E;index&#x4E0B;&#x6807;&#x4E4B;&#x524D;&#x7684;&#x5B57;&#x7B26;&#x662F;&#x5426;&#x548C;&#x574F;&#x5B57;&#x7B26;&#x5339;&#x914D;
+     *
+     * <span class="hljs-doctag">@param</span> pattern
+     * <span class="hljs-doctag">@param</span> badCharacter
+     * <span class="hljs-doctag">@param</span> index
+     * <span class="hljs-doctag">@return</span>
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">findCharacter</span><span class="hljs-params">(String pattern, <span class="hljs-keyword">char</span> badCharacter, <span class="hljs-keyword">int</span> index)</span> </span>{
+        <span class="hljs-comment">//&#x4ECE;&#x540E;&#x5F80;&#x524D;&#x627E;</span>
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = index - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i--) {
+            <span class="hljs-keyword">if</span> (pattern.charAt(i) == badCharacter) {
+                <span class="hljs-keyword">return</span> i;
+            }
+        }
+        <span class="hljs-comment">//&#x6A21;&#x5F0F;&#x4E32;&#x4E0D;&#x5B58;&#x5728;&#x8BE5;&#x5B57;&#x7B26;&#xFF0C;&#x8FD4;&#x56DE;-1</span>
+        <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">boyerMoore</span><span class="hljs-params">(String str, String pattern)</span> </span>{
+        <span class="hljs-keyword">int</span> strLength = str.length();
+        <span class="hljs-keyword">int</span> patternLength = pattern.length();
+        <span class="hljs-keyword">int</span> start = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">while</span> (start &lt;= strLength - patternLength) {
+            <span class="hljs-keyword">int</span> i;
+            <span class="hljs-comment">//&#x6A21;&#x5F0F;&#x4F20;&#x5339;&#x914D;</span>
+            <span class="hljs-keyword">for</span> (i = patternLength - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i--) {
+                <span class="hljs-keyword">if</span> (str.charAt(start + i) != pattern.charAt(i)) {
+                    <span class="hljs-keyword">break</span>;
+                }
+            }
+            <span class="hljs-keyword">if</span> (i &lt; <span class="hljs-number">0</span>) {
+                <span class="hljs-keyword">return</span> start;
+            }
+            <span class="hljs-comment">//&#x5BFB;&#x627E;&#x574F;&#x5B57;&#x7B26;&#x5728;&#x6A21;&#x5F0F;&#x4E32;&#x4E2D;&#x7684;&#x5BF9;&#x5E94;</span>
+            <span class="hljs-keyword">int</span> charIndex = findCharacter(pattern, str.charAt(start + i), i);
+            <span class="hljs-comment">//&#x8BA1;&#x7B97;&#x574F;&#x5B57;&#x7B26;&#x4EA7;&#x751F;&#x7684;&#x4F4D;&#x79FB;</span>
+            <span class="hljs-keyword">int</span> bcOffset = charIndex &gt;= <span class="hljs-number">0</span> ? i - charIndex : i + <span class="hljs-number">1</span>;
+            start += bcOffset;
+
+        }
+        <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;
+    }
+}
+</code></pre>
+<h3 id="&#x597D;&#x540E;&#x7F00;">&#x597D;&#x540E;&#x7F00;</h3>
+<p>&#x6A21;&#x5F0F;&#x4E32;&#x548C;&#x5B50;&#x4E32;&#x5F53;&#x4E2D;&#x76F8;&#x5339;&#x914D;&#x7684;&#x540E;&#x7F00;&#x3002;</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9OdE81c2lhbEpaR3BJSlVXS0ExU1dVREpKZTJpYUFHWEFqNXJHMlhkUXp3RUVJOXNBaWEwdkI5UDkwU1BCQWljVFA5cmFnbllQWEp2ZTlNY3ZkY0tzRE5SM0EvNjQw?x-oss-process=image/format,png" alt="img"></p>
+<p>&#x5982;&#x679C;&#x6A21;&#x5F0F;&#x4E32;&#x5176;&#x4ED6;&#x4F4D;&#x7F6E;&#x4E5F;&#x5305;&#x542B;&#x4E0E;&#x201C;GCG&#x201D;&#x76F8;&#x540C;&#x7684;&#x7247;&#x6BB5;&#xFF0C;&#x90A3;&#x4E48;&#x6211;&#x4EEC;&#x5C31;&#x53EF;&#x4EE5;&#x632A;&#x52A8;&#x6A21;&#x5F0F;&#x4E32;&#xFF0C;&#x8BA9;&#x8FD9;&#x4E2A;&#x7247;&#x6BB5;&#x548C;&#x597D;&#x540E;&#x7F00;&#x5BF9;&#x9F50;&#xFF0C;&#x8FDB;&#x884C;&#x4E0B;&#x4E00;&#x8F6E;&#x7684;&#x6BD4;&#x8F83;&#xFF1A;</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9OdE81c2lhbEpaR3BJSlVXS0ExU1dVREpKZTJpYUFHWEFqVGljMEtTbGtnbkJnY2RpYzlZeVNRNU9OTktQdU9ET3hHNUlON0hxVTV5Q2Fob1plRXZ1RTNTcUEvNjQw?x-oss-process=image/format,png" alt="img"></p>
+<p>&#x5728;&#x8FD9;&#x4E2A;&#x4F8B;&#x5B50;&#x4E2D;&#xFF0C;&#x91C7;&#x7528;&#x597D;&#x540E;&#x7F00;&#x89C4;&#x5219;&#x80FD;&#x591F;&#x8BA9;&#x6A21;&#x5F0F;&#x4E32;&#x5411;&#x540E;&#x79FB;&#x52A8;&#x66F4;&#x591A;&#x4F4D;&#xFF0C;&#x8282;&#x7701;&#x4E86;&#x66F4;&#x591A;&#x65E0;&#x8C13;&#x7684;&#x6BD4;&#x8F83;&#x3002;</p>
+<p><strong>&#x5982;&#x679C;&#x6A21;&#x5F0F;&#x4E32;&#x4E2D;&#x6CA1;&#x6709;&#x597D;&#x540E;&#x7F00;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x5E94;&#x8BE5;&#x76F4;&#x63A5;&#x79FB;&#x52A8;&#x5230;&#x4E3B;&#x4E32;&#x7684;&#x597D;&#x540E;&#x7F00;&#x7684;&#x4E0B;&#x4E00;&#x4F4D;&#xFF1F;</strong></p>
+<p>&#x4E0D;&#x884C;&#xFF0C;&#x8981;&#x5224;&#x65AD;&#x4E00;&#x4E2A;&#x7279;&#x6B8A;&#x60C5;&#x51B5;&#xFF0C;&#x5C31;&#x662F;<strong>&#x6A21;&#x5F0F;&#x4E32;&#x7684;&#x524D;&#x7F00;&#x662F;&#x5426;&#x548C;&#x597D;&#x540E;&#x7F00;&#x7684;&#x540E;&#x7F00;</strong>&#x7684;&#x76F8;&#x5339;&#x914D;&#xFF0C;&#x4EE5;&#x514D;&#x632A;&#x8FC7;&#x5934;&#x4E86;&#x3002;</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9OdE81c2lhbEpaR3BJSlVXS0ExU1dVREpKZTJpYUFHWEFqczNlbFQyOXJaVThpYmwzQ3R2WEd6Z3NNR2NhbUZMSXdIekNpYVBTSGhRMDVEZlZ1UW13aWFzVmtBLzY0MA?x-oss-process=image/format,png" alt="img"></p>
+<blockquote>
+<p>&#x4EC0;&#x4E48;&#x65F6;&#x5019;&#x7528;&#x574F;&#x5B57;&#x7B26;&#xFF1F;&#x4EC0;&#x4E48;&#x65F6;&#x5019;&#x7528;&#x597D;&#x540E;&#x7F00;&#x5462;&#xFF1F;</p>
+<p>&#x53EF;&#x4EE5;&#x5728;&#x6BCF;&#x4E00;&#x8F6E;&#x7684;&#x5B57;&#x7B26;&#x6BD4;&#x8F83;&#x4E4B;&#x540E;&#xFF0C;&#x6309;&#x7167;&#x8BDD;&#x5B57;&#x7B26;&#x548C;&#x597D;&#x540E;&#x7F00;&#x89C4;&#x5219;&#x5206;&#x522B;&#x8BA1;&#x7B97;&#x76F8;&#x5E94;&#x7684;&#x632A;&#x52A8;&#x8DDD;&#x79BB;&#xFF0C;&#x54EA;&#x4E00;&#x79CD;&#x8DDD;&#x79BB;&#x66F4;&#x957F;&#xFF0C;&#x6211;&#x4EEC;&#x5C31;&#x628A;&#x6A21;&#x5F0F;&#x4E32;&#x632A;&#x52A8;&#x5BF9;&#x5E94;&#x7684;&#x957F;&#x5EA6;&#x3002;</p>
+</blockquote>
 
                                 
                                 </section>
@@ -1997,7 +2076,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"字符串匹配算法","level":"1.14.3","depth":2,"next":{"title":"其他","level":"1.15","depth":1,"path":"Other/README.md","ref":"Other/README.md","articles":[{"title":"遇到的问题","level":"1.15.1","depth":2,"path":"Other/遇到的问题.md","ref":"Other/遇到的问题.md","articles":[]},{"title":"js引入静态文件","level":"1.15.2","depth":2,"path":"Other/js引入静态文件.md","ref":"Other/js引入静态文件.md","articles":[]},{"title":"centos-mysql","level":"1.15.3","depth":2,"path":"Other/centos-mysql.md","ref":"Other/centos-mysql.md","articles":[]}]},"previous":{"title":"LRU缓存淘汰算法","level":"1.14.2","depth":2,"path":"Data-structure-algorithm/LRU缓存淘汰算法.md","ref":"Data-structure-algorithm/LRU缓存淘汰算法.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["expandable-chapters"],"pluginsConfig":{"expandable-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Data-structure-algorithm/字符串匹配算法.md","mtime":"2021-05-22T11:55:28.600Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-05-22T11:56:53.082Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"字符串匹配算法","level":"1.14.3","depth":2,"next":{"title":"其他","level":"1.15","depth":1,"path":"Other/README.md","ref":"Other/README.md","articles":[{"title":"遇到的问题","level":"1.15.1","depth":2,"path":"Other/遇到的问题.md","ref":"Other/遇到的问题.md","articles":[]},{"title":"js引入静态文件","level":"1.15.2","depth":2,"path":"Other/js引入静态文件.md","ref":"Other/js引入静态文件.md","articles":[]},{"title":"centos-mysql","level":"1.15.3","depth":2,"path":"Other/centos-mysql.md","ref":"Other/centos-mysql.md","articles":[]}]},"previous":{"title":"LRU缓存淘汰算法","level":"1.14.2","depth":2,"path":"Data-structure-algorithm/LRU缓存淘汰算法.md","ref":"Data-structure-algorithm/LRU缓存淘汰算法.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["expandable-chapters"],"pluginsConfig":{"expandable-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Data-structure-algorithm/字符串匹配算法.md","mtime":"2021-05-24T05:51:42.302Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-05-24T05:51:55.960Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
