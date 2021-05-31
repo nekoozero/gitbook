@@ -61,7 +61,7 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="../../Effective/" />
+    <link rel="next" href="基于接口而非实现.html" />
     
     
     <link rel="prev" href="面向过程示例.html" />
@@ -593,6 +593,19 @@
             
                     
                     SPI
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.12" data-path="../../Basic/位运算.html">
+            
+                <a href="../../Basic/位运算.html">
+            
+                    
+                    位运算
             
                 </a>
             
@@ -1540,6 +1553,58 @@
             
         </li>
     
+        <li class="chapter " data-level="1.11.9.3" data-path="基于接口而非实现.html">
+            
+                <a href="基于接口而非实现.html">
+            
+                    
+                    基于接口而非实现
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.9.4" data-path="多用组合少用继承.html">
+            
+                <a href="多用组合少用继承.html">
+            
+                    
+                    多用组合少用继承
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.9.5" data-path="贫血模型与充血模型.html">
+            
+                <a href="贫血模型与充血模型.html">
+            
+                    
+                    贫血模型与充血模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.9.6" data-path="单一职责原则.html">
+            
+                <a href="单一职责原则.html">
+            
+                    
+                    单一职责原则
+            
+                </a>
+            
+
+            
+        </li>
+    
 
             </ul>
             
@@ -1867,6 +1932,123 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="&#x63A5;&#x53E3;&#x4E0E;&#x62BD;&#x8C61;&#x7C7B;">&#x63A5;&#x53E3;&#x4E0E;&#x62BD;&#x8C61;&#x7C7B;</h1>
+<p>&#x62BD;&#x8C61;&#x7C7B;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-comment">// &#x62BD;&#x8C61;&#x7C7B;</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Logger</span> </span>{
+  <span class="hljs-keyword">private</span> String name;
+  <span class="hljs-keyword">private</span> <span class="hljs-keyword">boolean</span> enabled;
+  <span class="hljs-keyword">private</span> Level minPermittedLevel;
+
+  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Logger</span><span class="hljs-params">(String name, <span class="hljs-keyword">boolean</span> enabled, Level minPermittedLevel)</span> </span>{
+    <span class="hljs-keyword">this</span>.name = name;
+    <span class="hljs-keyword">this</span>.enabled = enabled;
+    <span class="hljs-keyword">this</span>.minPermittedLevel = minPermittedLevel;
+  }
+
+    <span class="hljs-comment">//&#x9700;&#x6CE8;&#x610F;&#x8FD9;&#x51E0;&#x884C;&#x7684;&#x4EE3;&#x7801;&#xFF0C;&#x6700;&#x7EC8;&#x5BF9;&#x5916;&#x66B4;&#x9732;&#x7684;&#x65B9;&#x6CD5;&#x662F;log()&#xFF0C;log()&#x65B9;&#x6CD5;&#x4E2D;&#x7EDF;&#x4E00;&#x5BF9;&#x53C2;&#x6570;&#x8FDB;&#x884C;&#x68C0;&#x67E5;&#xFF0C;&#x5DF2;&#x8FBE;&#x5230;&#x4EE3;&#x7801;&#x590D;&#x7528;&#x7684;&#x76EE;&#x7684;&#x3002;doLog&#x662F;&#x62BD;&#x8C61;&#x65B9;&#x6CD5;&#xFF0C;&#x5728;&#x4E0D;&#x540C;&#x7684;&#x5B9E;&#x73B0;&#x7C7B;&#x4E2D;&#x91CD;&#x5199;&#x3002;</span>
+  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">log</span><span class="hljs-params">(Level level, String message)</span> </span>{
+    <span class="hljs-keyword">boolean</span> loggable = enabled &amp;&amp; (minPermittedLevel.intValue() &lt;= level.intValue());
+    <span class="hljs-keyword">if</span> (!loggable) <span class="hljs-keyword">return</span>;
+    doLog(level, message);
+  }
+
+  <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doLog</span><span class="hljs-params">(Level level, String message)</span></span>;
+}
+<span class="hljs-comment">// &#x62BD;&#x8C61;&#x7C7B;&#x7684;&#x5B50;&#x7C7B;&#xFF1A;&#x8F93;&#x51FA;&#x65E5;&#x5FD7;&#x5230;&#x6587;&#x4EF6;</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FileLogger</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Logger</span> </span>{
+  <span class="hljs-keyword">private</span> Writer fileWriter;
+
+  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">FileLogger</span><span class="hljs-params">(String name, <span class="hljs-keyword">boolean</span> enabled,
+    Level minPermittedLevel, String filepath)</span> </span>{
+    <span class="hljs-keyword">super</span>(name, enabled, minPermittedLevel);
+    <span class="hljs-keyword">this</span>.fileWriter = <span class="hljs-keyword">new</span> FileWriter(filepath); 
+  }
+
+  <span class="hljs-meta">@Override</span>
+  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doLog</span><span class="hljs-params">(Level level, String mesage)</span> </span>{
+    <span class="hljs-comment">// &#x683C;&#x5F0F;&#x5316;level&#x548C;message,&#x8F93;&#x51FA;&#x5230;&#x65E5;&#x5FD7;&#x6587;&#x4EF6;</span>
+    fileWriter.write(...);
+  }
+}
+<span class="hljs-comment">// &#x62BD;&#x8C61;&#x7C7B;&#x7684;&#x5B50;&#x7C7B;: &#x8F93;&#x51FA;&#x65E5;&#x5FD7;&#x5230;&#x6D88;&#x606F;&#x4E2D;&#x95F4;&#x4EF6;(&#x6BD4;&#x5982;kafka)</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MessageQueueLogger</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Logger</span> </span>{
+  <span class="hljs-keyword">private</span> MessageQueueClient msgQueueClient;
+
+  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">MessageQueueLogger</span><span class="hljs-params">(String name, <span class="hljs-keyword">boolean</span> enabled,
+    Level minPermittedLevel, MessageQueueClient msgQueueClient)</span> </span>{
+    <span class="hljs-keyword">super</span>(name, enabled, minPermittedLevel);
+    <span class="hljs-keyword">this</span>.msgQueueClient = msgQueueClient;
+  }
+
+  <span class="hljs-meta">@Override</span>
+  <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doLog</span><span class="hljs-params">(Level level, String mesage)</span> </span>{
+    <span class="hljs-comment">// &#x683C;&#x5F0F;&#x5316;level&#x548C;message,&#x8F93;&#x51FA;&#x5230;&#x6D88;&#x606F;&#x4E2D;&#x95F4;&#x4EF6;</span>
+    msgQueueClient.send(...);
+  }
+}
+</code></pre>
+<ul>
+<li>&#x62BD;&#x8C61;&#x7C7B;&#x4E0D;&#x5141;&#x8BB8;&#x88AB;&#x5B9E;&#x4F8B;&#x5316;&#xFF0C;&#x53EA;&#x80FD;&#x88AB;&#x7EE7;&#x627F;&#x3002;</li>
+<li>&#x62BD;&#x8C61;&#x7C7B;&#x53EF;&#x4EE5;&#x5305;&#x542B;&#x5C5E;&#x6027;&#x548C;&#x65B9;&#x6CD5;&#xFF0C;&#x65B9;&#x6CD5;&#x53CA;&#x53EF;&#x4EE5;&#x5305;&#x62EC;&#x4EE3;&#x7801;&#x5B9E;&#x73B0;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x4E0D;&#x5305;&#x62EC;&#x4EE3;&#x7801;&#x5B9E;&#x73B0;&#x3002;&#x4E0D;&#x5305;&#x542B;&#x4EE3;&#x7801;&#x5B9E;&#x73B0;&#x7684;&#x65B9;&#x6CD5;&#x53EB;&#x505A;&#x62BD;&#x8C61;&#x65B9;&#x6CD5;&#x3002;</li>
+<li>&#x5B50;&#x7C7B;&#x7EE7;&#x627F;&#x62BD;&#x8C61;&#x65B9;&#x6CD5;&#xFF0C;&#x5FC5;&#x987B;&#x5B9E;&#x73B0;&#x62BD;&#x8C61;&#x7C7B;&#x4E2D;&#x7684;&#x6240;&#x6709;&#x62BD;&#x8C61;&#x65B9;&#x6CD5;&#x3002;</li>
+</ul>
+<p>&#x63A5;&#x53E3;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-comment">// &#x63A5;&#x53E3;</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Filter</span> </span>{
+  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">doFilter</span><span class="hljs-params">(RpcRequest req)</span> <span class="hljs-keyword">throws</span> RpcException</span>;
+}
+<span class="hljs-comment">// &#x63A5;&#x53E3;&#x5B9E;&#x73B0;&#x7C7B;&#xFF1A;&#x9274;&#x6743;&#x8FC7;&#x6EE4;&#x5668;</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AuthencationFilter</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Filter</span> </span>{
+  <span class="hljs-meta">@Override</span>
+  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doFilter</span><span class="hljs-params">(RpcRequest req)</span> <span class="hljs-keyword">throws</span> RpcException </span>{
+    <span class="hljs-comment">//...&#x9274;&#x6743;&#x903B;&#x8F91;..</span>
+  }
+}
+<span class="hljs-comment">// &#x63A5;&#x53E3;&#x5B9E;&#x73B0;&#x7C7B;&#xFF1A;&#x9650;&#x6D41;&#x8FC7;&#x6EE4;&#x5668;</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RateLimitFilter</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Filter</span> </span>{
+  <span class="hljs-meta">@Override</span>
+  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doFilter</span><span class="hljs-params">(RpcRequest req)</span> <span class="hljs-keyword">throws</span> RpcException </span>{
+    <span class="hljs-comment">//...&#x9650;&#x6D41;&#x903B;&#x8F91;...</span>
+  }
+}
+<span class="hljs-comment">// &#x8FC7;&#x6EE4;&#x5668;&#x4F7F;&#x7528;Demo</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Application</span> </span>{
+  <span class="hljs-comment">// filters.add(new AuthencationFilter());</span>
+  <span class="hljs-comment">// filters.add(new RateLimitFilter());</span>
+  <span class="hljs-keyword">private</span> List&lt;Filter&gt; filters = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+
+  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">handleRpcRequest</span><span class="hljs-params">(RpcRequest req)</span> </span>{
+    <span class="hljs-keyword">try</span> {
+      <span class="hljs-keyword">for</span> (Filter filter : filters) {
+        filter.doFilter(req);
+      }
+    } <span class="hljs-keyword">catch</span>(RpcException e) {
+      <span class="hljs-comment">// ...&#x5904;&#x7406;&#x8FC7;&#x6EE4;&#x7ED3;&#x679C;...</span>
+    }
+    <span class="hljs-comment">// ...&#x7701;&#x7565;&#x5176;&#x4ED6;&#x5904;&#x7406;&#x903B;&#x8F91;...</span>
+  }
+}
+</code></pre>
+<ul>
+<li>&#x4E00;&#x822C;&#x6765;&#x8BF4;&#xFF0C;&#x63A5;&#x53E3;&#x4E0D;&#x80FD;&#x5305;&#x542B;&#x5C5E;&#x6027;&#xFF08;&#x6210;&#x5458;&#x53D8;&#x91CF;&#xFF09;&#x3002;<strong>&#x6210;&#x5458;&#x53D8;&#x91CF;&#x9ED8;&#x8BA4;&#x4E14;&#x53EA;&#x80FD;&#x662F;public static final&#x7684;</strong>&#x3002;</li>
+<li>&#x4E00;&#x822C;&#x6765;&#x8BF4;&#xFF0C;&#x63A5;&#x53E3;&#x53EA;&#x80FD;&#x58F0;&#x660E;&#x65B9;&#x6CD5;&#xFF0C;&#x65B9;&#x6CD5;&#x4E0D;&#x80FD;&#x5305;&#x542B;&#x4EE3;&#x7801;&#x5B9E;&#x73B0;&#x3002;<strong>default&#x4FEE;&#x9970;&#x7684;&#x65B9;&#x6CD5;</strong>&#x662F;&#x53EF;&#x4EE5;&#x6709;&#x65B9;&#x6CD5;&#x5B9E;&#x73B0;&#x7684;&#xFF0C;&#x4E3A;&#x5B50;&#x7C7B;&#x63D0;&#x4F9B;&#x9ED8;&#x8BA4;&#x5B9E;&#x73B0;&#x3002;&#x591A;&#x5B9E;&#x73B0;&#x7684;&#x60C5;&#x51B5;&#x4E0B;<strong>&#x5982;&#x679C;&#x7236;&#x63A5;&#x53E3;&#x4E2D;&#x7684;default&#x65B9;&#x6CD5;&#x6709;&#x91CD;&#x590D;&#xFF0C;&#x5219;&#x5B50;&#x7C7B;&#x5FC5;&#x987B;&#x91CD;&#x5199;&#x6B64;&#x65B9;&#x6CD5;</strong>&#x3002;</li>
+<li>&#x7C7B;&#x5B9E;&#x73B0;&#x63A5;&#x53E3;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5FC5;&#x987B;&#x5B9E;&#x73B0;&#x63A5;&#x53E3;&#x4E2D;&#x58F0;&#x660E;&#x7684;&#x6240;&#x6709;&#x65B9;&#x6CD5;&#x3002;default &#x65B9;&#x6CD5;&#x9664;&#x5916;&#x3002;</li>
+</ul>
+<p><strong>&#x62BD;&#x8C61;&#x7C7B;&#x53EA;&#x80FD;&#x88AB;&#x5B50;&#x7C7B;&#x7EE7;&#x627F;&#xFF0C;&#x8868;&#x793A;&#x4E00;&#x79CD; is-a &#x7684;&#x5173;&#x7CFB;&#x3002;&#x63A5;&#x53E3;&#x5219;&#x8868;&#x793A; has-a &#x7684;&#x5173;&#x7CFB;&#xFF0C;&#x8868;&#x793A;&#x5177;&#x6709;&#x67D0;&#x4E9B;&#x529F;&#x80FD;&#x3002;</strong></p>
+<p>&#x62BD;&#x8C61;&#x7C7B;&#x66F4;&#x591A;&#x7684;&#x662F;&#x4E3A;&#x4E86;<strong>&#x4EE3;&#x7801;&#x590D;&#x7528;</strong>&#xFF0C;&#x800C;<strong>&#x63A5;&#x53E3;&#x4FA7;&#x91CD;&#x4E8E;&#x89E3;&#x8026;</strong>&#xFF0C;&#x63A5;&#x53E3;&#x5B9E;&#x73B0;&#x4E86;&#x7EA6;&#x5B9A;&#x548C;&#x5B9E;&#x73B0;&#x76F8;&#x5206;&#x79BB;&#xFF0C;&#x53EF;&#x4EE5;&#x964D;&#x4F4E;&#x4EE3;&#x7801;&#x95F4;&#x7684;&#x8026;&#x5408;&#x6027;&#xFF0C;&#x63D0;&#x9AD8;&#x4EE3;&#x7801;&#x7684;&#x53EF;&#x6269;&#x5C55;&#x6027;&#x3002;</p>
+<blockquote>
+<p>&#x57FA;&#x4E8E;&#x63A5;&#x53E3;&#x7F16;&#x7A0B;&#x800C;&#x975E;&#x5B9E;&#x73B0;&#x7F16;&#x7A0B;</p>
+</blockquote>
+<h2 id="&#x603B;&#x7ED3;">&#x603B;&#x7ED3;</h2>
+<p>&#x4ECE;&#x7C7B;&#x7684;&#x7EE7;&#x627F;&#x5C42;&#x6B21;&#x4E0A;&#x6765;&#x770B;&#xFF0C;&#x62BD;&#x8C61;&#x7C7B;&#x662F;&#x4E00;&#x79CD;&#x81EA;&#x4E0B;&#x800C;&#x4E0A;&#x7684;&#x8BBE;&#x8BA1;&#x601D;&#x8DEF;&#xFF0C;&#x73B0;&#x6709;&#x5B50;&#x7C7B;&#x7684;&#x4EE3;&#x7801;&#x91CD;&#x590D;&#xFF0C;&#x7136;&#x540E;&#x5728;&#x62BD;&#x8C61;&#x6210;&#x4E0A;&#x5C42;&#x7684;&#x7236;&#x7C7B;&#xFF08;&#x4E5F;&#x5C31;&#x662F;&#x62BD;&#x8C61;&#x7C7B;&#xFF09;&#x3002;&#x800C;&#x63A5;&#x53E3;&#x6B63;&#x597D;&#x76F8;&#x53CD;&#xFF0C;&#x5B83;&#x662F;&#x4E00;&#x79CD;&#x81EA;&#x4E0A;&#x800C;&#x4E0B;&#x7684;&#x8BBE;&#x8BA1;&#x601D;&#x8DEF;&#x3002;&#x6211;&#x4EEC;&#x5728;&#x7F16;&#x7A0B;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4E00;&#x822C;&#x90FD;&#x662F;&#x5148;&#x8BBE;&#x8BA1;&#x63A5;&#x53E3;&#xFF0C;&#x518D;&#x53BB;&#x8003;&#x8651;&#x5177;&#x4F53;&#x7684;&#x5B9E;&#x73B0;&#x3002;</p>
+<ol>
+<li><p>&#x62BD;&#x8C61;&#x7C7B;&#x548C;&#x63A5;&#x53E3;&#x7684;&#x8BED;&#x6CD5;&#x7279;&#x6027;</p>
+<p>&#x62BD;&#x8C61;&#x7C7B;&#x4E0D;&#x5141;&#x8BB8;&#x88AB;&#x5B9E;&#x4F8B;&#x5316;&#xFF0C;&#x53EA;&#x80FD;&#x88AB;&#x7EE7;&#x627F;&#xFF0C;&#x5B83;&#x53EF;&#x4EE5;&#x5305;&#x542B;&#x5C5E;&#x6027;&#x548C;&#x65B9;&#x6CD5;&#x3002;&#x65B9;&#x6CD5;&#x65E2;&#x53EF;&#x4EE5;&#x5305;&#x542B;&#x4EE3;&#x7801;&#x5B9E;&#x73B0;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x4E0D;&#x5305;&#x542B;&#x4EE3;&#x7801;&#x5B9E;&#x73B0;&#x3002;&#x4E0D;&#x5305;&#x542B;&#x4EE3;&#x7801;&#x5B9E;&#x73B0;&#x7684;&#x65B9;&#x6CD5;&#x53EB;&#x505A;&#x62BD;&#x8C61;&#x65B9;&#x6CD5;&#x3002;&#x5B50;&#x7C7B;&#x7EE7;&#x627F;&#x62BD;&#x8C61;&#x7C7B;&#xFF0C;&#x5FC5;&#x987B;&#x5B9E;&#x73B0;&#x62BD;&#x8C61;&#x7C7B;&#x4E2D;&#x7684;&#x6240;&#x6709;&#x62BD;&#x8C61;&#x65B9;&#x6CD5;&#x3002;&#x63A5;&#x53E3;&#x4E0D;&#x80FD;&#x5305;&#x542B;&#x5C5E;&#x6027;&#xFF0C;&#x53EA;&#x80FD;&#x58F0;&#x660E;&#x65B9;&#x6CD5;&#xFF0C;&#x65B9;&#x6CD5;&#x4E0D;&#x80FD;&#x5305;&#x542B;&#x4EE3;&#x7801;&#x5B9E;&#x73B0;&#x3002;&#x7C7B;&#x5B9E;&#x73B0;&#x63A5;&#x53E3;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5FC5;&#x987B;&#x5B9E;&#x73B0;&#x63A5;&#x53E3;&#x4E2D;&#x58F0;&#x660E;&#x7684;&#x6240;&#x6709;&#x65B9;&#x6CD5;&#x3002;</p>
+</li>
+<li><p>&#x62BD;&#x8C61;&#x7C7B;&#x548C;&#x63A5;&#x53E3;&#x5B58;&#x5728;&#x7684;&#x610F;&#x4E49;</p>
+<p>&#x62BD;&#x8C61;&#x7C7B;&#x662F;&#x5BF9;&#x6210;&#x5458;&#x53D8;&#x91CF;&#x548C;&#x65B9;&#x6CD5;&#x7684;&#x62BD;&#x8C61;&#xFF0C;&#x662F;&#x4E00;&#x79CD; is-a &#x5173;&#x7CFB;&#xFF0C;<strong>&#x662F;&#x4E3A;&#x4E86;&#x89E3;&#x51B3;&#x4EE3;&#x7801;&#x590D;&#x7528;&#x95EE;&#x9898;</strong>&#x3002;&#x63A5;&#x53E3;&#x662F;&#x5BF9;&#x65B9;&#x6CD5;&#x7684;&#x62BD;&#x8C61;&#xFF0C;&#x662F;&#x4E00;&#x79CD; has-a &#x5173;&#x7CFB;&#xFF0C;&#x8868;&#x793A;&#x5177;&#x6709;&#x67D0;&#x4E00;&#x7EC4;&#x884C;&#x4E3A;&#x7279;&#x6027;&#xFF0C;<strong>&#x662F;&#x4E3A;&#x4E86;&#x89E3;&#x51B3;&#x89E3;&#x8026;&#x95EE;&#x9898;</strong>&#xFF0C;&#x9694;&#x79BB;&#x63A5;&#x53E3;&#x548C;&#x5177;&#x4F53;&#x7684;&#x5B9E;&#x73B0;&#xFF0C;&#x63D0;&#x9AD8;&#x4EE3;&#x7801;&#x7684;&#x6269;&#x5C55;&#x6027;&#x3002;</p>
+</li>
+</ol>
 
                                 
                                 </section>
@@ -1899,7 +2081,7 @@
                 </a>
                 
                 
-                <a href="../../Effective/" class="navigation navigation-next " aria-label="Next page: Effective Java">
+                <a href="基于接口而非实现.html" class="navigation navigation-next " aria-label="Next page: 基于接口而非实现">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -1910,7 +2092,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"接口与抽象类","level":"1.11.9.2","depth":3,"next":{"title":"Effective Java","level":"1.12","depth":1,"path":"Effective/README.md","ref":"Effective/README.md","articles":[{"title":"第一章：创建和销毁对象","level":"1.12.1","depth":2,"path":"Effective/创建和销毁对象.md","ref":"Effective/创建和销毁对象.md","articles":[]},{"title":"第二章：对于所有对象都通用的方法","level":"1.12.2","depth":2,"path":"Effective/通用方法.md","ref":"Effective/通用方法.md","articles":[]}]},"previous":{"title":"面向过程","level":"1.11.9.1","depth":3,"path":"Design/Geek/面向过程示例.md","ref":"Design/Geek/面向过程示例.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["expandable-chapters"],"pluginsConfig":{"expandable-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Design/Geek/接口与抽象类.md","mtime":"2021-05-20T08:23:09.087Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-05-24T05:51:55.960Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"接口与抽象类","level":"1.11.9.2","depth":3,"next":{"title":"基于接口而非实现","level":"1.11.9.3","depth":3,"path":"Design/Geek/基于接口而非实现.md","ref":"Design/Geek/基于接口而非实现.md","articles":[]},"previous":{"title":"面向过程","level":"1.11.9.1","depth":3,"path":"Design/Geek/面向过程示例.md","ref":"Design/Geek/面向过程示例.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["expandable-chapters"],"pluginsConfig":{"expandable-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Design/Geek/接口与抽象类.md","mtime":"2021-05-26T05:31:14.787Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-05-31T02:41:12.883Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
