@@ -2,7 +2,6 @@
 title: ThreadLocal基础
 date: 2019-05-30 15:11:13
 categories: 编程基础
-summary: ThreadLocal的基础
 ---
 
 ## Thread.join()
