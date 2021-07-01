@@ -16,7 +16,7 @@
 >
 > 除此之外，Java 内存模型还提供了一系列原语，封装了底层实现后，供开发者直接使用。如我们常用的一些关键字：synchronized、volatile 以及并发包等。
 
-![JMM.png](http://www.qxnekoo.cn:8888/images/2020/03/19/JMM.png)
+![JMM](http://www.qxnekoo.cn:8888/images/2020/03/19/JMM.png)
 
 ## 内存间交互操作
 
