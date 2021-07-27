@@ -6,6 +6,7 @@
 ## Commenting this out is preferred by some people, see
 ## https://docs.npmjs.com/misc/faq#should-i-check-my-node_modules-folder-into-git
 node_modules
+_book
 
 # Book build output
 
@@ -14,3 +15,4 @@ node_modules
 *.epub
 *.mobi
 *.pdf
+

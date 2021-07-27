@@ -130,6 +130,7 @@
     * [KMP 算法](Data-structure-algorithm/KMP算法.md)
     * [二分搜索算法](Data-structure-algorithm/二分搜索算法.md)
     * [优先队列](Data-structure-algorithm/优先队列.md)
+    * [动态规划](Data-structure-algorithm/动态规划.md)
 * [其他](Other/README.md)
     * [遇到的问题](Other/遇到的问题.md)
     * [js引入静态文件](Other/js引入静态文件.md)
