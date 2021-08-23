@@ -112,6 +112,8 @@
         * [多用组合少用继承](Design/Geek/多用组合少用继承.md)
         * [贫血模型与充血模型](Design/Geek/贫血模型与充血模型.md)
         * [单一职责原则](Design/Geek/单一职责原则.md)
+        * [开闭原则](Design/Geek/开闭原则.md)
+        * [里氏替换原则](Design/Geek/里氏替换原则.md)
 * [Effective Java](Effective/README.md)
     * [第一章：创建和销毁对象](Effective/创建和销毁对象.md)
     * [第二章：对于所有对象都通用的方法](Effective/通用方法.md)
