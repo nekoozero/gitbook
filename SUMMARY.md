@@ -134,6 +134,7 @@
     * [优先队列](Data-structure-algorithm/优先队列.md)
     * [动态规划](Data-structure-algorithm/动态规划.md)
     * [回溯算法](Data-structure-algorithm/回溯算法.md)
+    * [BFS](Data-structure-algorithm/BFS.md)
 * [其他](Other/README.md)
     * [遇到的问题](Other/遇到的问题.md)
     * [js引入静态文件](Other/js引入静态文件.md)
