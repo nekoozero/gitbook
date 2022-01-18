@@ -12,11 +12,11 @@
 
 官网：
 
-![nacos.jpg](http://www.qxnekoo.cn:8888/images/2020/04/16/nacos.jpg)
+![nacos.jpg](../myimage/nacos.png)
 
 其实翻译出来大概是这样的
 
-![nacos.png](http://www.qxnekoo.cn:8888/images/2020/04/16/nacos.png)
+![nacos.png](../myimage/nacos1.png)
 
 自己安装的时候 `nginx` 和 `mysql` 并没有安装集群。
 
@@ -35,7 +35,7 @@ db.password=root
 
 安装了三个 `nacos` 都要切换这个配置。关于数据库的创建，在 `nacos`目录下的 `conf` 下有个 `nacos-mysql.sql` 文件，按照内容创建数据库，在执行里面的 `sql` 初始化表就可以了,结果如下：
 
-![nacosd18beadd5eccbd9f.png](http://www.qxnekoo.cn:8888/images/2020/04/16/nacosd18beadd5eccbd9f.png)
+![nacosd18beadd5eccbd9f.png](../myimage/nacosd18beadd5eccbd9f.png)
 
 接着配置集群信息，也很简单，在 `conf` 目录下创建 `cluster.conf` 文件，内容如下：
 
@@ -49,11 +49,11 @@ db.password=root
 
 这样 `nacos` 就配置完成了，可以直接在 ` bin` 目录下运行 `sh startup.sh` 命令，`linux` 默认是开启集群模式的。
 
-![nacos80efa86a6ed2c3c1.png](http://www.qxnekoo.cn:8888/images/2020/04/16/nacos80efa86a6ed2c3c1.png)
+![nacos80efa86a6ed2c3c1.png](../myimage/nacos80efa86a6ed2c3c1.png)
 
 表示以集群的模式在启动了。
 
-![nacos6845f86f5a58cc8a.png](http://www.qxnekoo.cn:8888/images/2020/04/16/nacos6845f86f5a58cc8a.png)
+![nacos6845f86f5a58cc8a.png](../myimage/nacos6845f86f5a58cc8a.png)
 
 如上图所示就启动成功了，比较离谱的是大家也看到了，这个节点竟然启动了快4分钟了，中间就是一直在 `Nacos is starting...`，还好当时我没终止启动。
 
@@ -135,6 +135,6 @@ server {
 
 之后启动`nginx`，访问 `192.168.46.128:80/nacos`
 
-![b36db005b544dfefe18c2d0bedf72932.png](http://www.qxnekoo.cn:8888/images/2020/04/16/b36db005b544dfefe18c2d0bedf72932.png)
+![b36db005b544dfefe18c2d0bedf72932.png](../myimage/b36db005b544dfefe18c2d0bedf72932.png)
 
 图中的数据是自己加的，默认是没有数据的。表示集群搭建成功。

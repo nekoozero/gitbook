@@ -14,15 +14,15 @@
 
 `ConcurrentHashMap`是由`Segment`数组结构和`HashEntry`数组结构组成。`Segment`是一种可重入锁`ReentrantLock`，在`ConcurrentHashMap`里扮演锁的角色，`HashEntry`则用于存储键值对数据。一个`ConcurrentHashMap`里包含了一个`Segment`数组，`Segment`的结构和`HashMap`类似，是一种数组和链表结构，一个`Segment`里包含了一个`HashEntry`数组，每个`HashEntry`是一个链表结构的元素，每个`Segment`守护着一个`HashEntry`数组里的元素，当对`HashEntry`数组进行修改时，必须首先获得它对应的`Segment`锁。
 
-![ConcurrentHash7](http://www.qxnekoo.cn:8888/images/2020/04/14/ConcurrentHash7.png)
+![ConcurrentHash7](../myimage/ConcurrentHash7.png)
 
 `Java8`的实现已经抛弃了`Segment`分段锁机制，利用`CAS+Synchronized来`保证并发更新的安全，数组结构采用：数组+链表+红黑树。
 
-![ConcurrentHashMap8](http://www.qxnekoo.cn:8888/images/2020/04/14/ConcurrentHashMap8.jpg)
+![ConcurrentHashMap8](../myimage/ConcurrentHashMap8.png)
 
 ## put函数
 
-![ConcurrentHashMap_put](http://www.qxnekoo.cn:8888/images/2020/04/14/ConcurrentHashMap_put.jpg)
+![ConcurrentHashMap_put](../myimage/ConcurrentHashMap_put.png)
 
 - 根据`key` 计算出 `hashcode` 。
 - 判断是否需要进行初始化。

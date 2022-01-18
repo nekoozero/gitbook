@@ -25,7 +25,7 @@
 
 synchronized的对象锁，其指针指向的是一个monitor对象（由C++实现）的起始地址。每个对象实例都会有一个 monitor。其中monitor可以与对象一起创建、销毁；亦或者当线程试图获取对象锁时自动生成。
 
-![monitor.png](http://www.qxnekoo.cn:8888/images/2020/03/20/monitor.png)
+![monitor.png](../myimage/monitor.png)
 
 - `Owner`：初始时为NULL表示当前没有任何线程拥有该`monitor`，当线程成功拥有该锁后保存线程唯一标识，当锁被释放时又设置为NULL；
 - `EntryQ`：关联一个系统互斥锁（`semaphore`），阻塞所有试图锁住`monitor`失败的线程。
@@ -38,7 +38,7 @@ synchronized的对象锁，其指针指向的是一个monitor对象（由C++实�
 
 Monitor对象结构：
 
-![Monitor.png](http://www.qxnekoo.cn:8888/images/2020/04/25/Monitor.png)
+![Monitor.png](../myimage/Monitor1.png)
 
 ObjectMonitor:
 
@@ -66,7 +66,7 @@ ObjectMonitor() {
 
 
 
-![ObjectMonitor.png](http://www.qxnekoo.cn:8888/images/2020/04/25/ObjectMonitor.png)
+![ObjectMonitor.png](../myimage/ObjectMonitor.png)
 
 这部分的内容、原理确实比较复杂，贴上大佬的文章：
 

@@ -266,11 +266,11 @@ protected boolean tryAcquire(int arg) {
 
 > 节点用来保存获取同步状态失败的线程引用、等待状态记忆前驱和后继节点。
 
-![AQS_QUEUE.png](http://www.qxnekoo.cn:8888/images/2020/05/11/AQS_QUEUE.png)
+![AQS_QUEUE.png](../myimage/AQS_QUEUE.png)
 
 获取锁的流程：
 
-![AQS_PROCEDURE.png](http://www.qxnekoo.cn:8888/images/2020/05/11/AQS_PROCEDURE.png)
+![AQS_PROCEDURE.png](../myimage/AQS_PROCEDURE.png)
 
 下面举几个例子吧，首先是 `Mutex`，这个也是源码注释中的一个例子：
 

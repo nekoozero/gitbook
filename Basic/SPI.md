@@ -15,7 +15,7 @@ SPI 与 API 区别：
 
 机制如下：
 
-![SPI.png](http://www.qxnekoo.cn:8888/images/2020/05/12/SPI.png)
+![SPI.png](../myimage/SPI.png)
 
 Java SPI 实际上是“**基于接口的编程＋策略模式＋配置文件**”组合实现的动态加载机制。
 
@@ -48,7 +48,7 @@ Java SPI就是提供这样的一个机制：为某个接口寻找服务实现的
 
 新建一个 maven 项目，目录结构
 
-![SPI_ex1.png](http://www.qxnekoo.cn:8888/images/2020/05/12/SPI_ex1.png)
+![SPI_ex1.png](../myimage/SPI_ex1.png)
 
 默认 maven 的compile level 为5，在pom中改一下，添加
 
@@ -115,7 +115,7 @@ public class SPIMain {
 
 META-INF目录是自己新建的，为什么必须是这个文件夹，因为是源码里面写死的：
 
-![SERVICE_LOADER_SPI.png](http://www.qxnekoo.cn:8888/images/2020/05/12/SERVICE_LOADER_SPI.png)
+![SERVICE_LOADER_SPI.png](../myimage/SERVICE_LOADER_SPI.png)
 
 里面有一个以“接口全限定名”为命名的文件，内容为实现类的全限定名：
 
