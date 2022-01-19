@@ -157,7 +157,7 @@ entranceOfWriteOffService.writeOff("USER");
 
 运行结果如下，可以看到，实际上调用这个方法的对象还是核销入口对象。
 
-![53ace438b23ec3ba749dadfe29416391.png](http://www.qxnekoo.cn:8888/images/2020/04/18/53ace438b23ec3ba749dadfe29416391.png)
+![53ace438b23ec3ba749dadfe29416391.png](../myimage/53ace438b23ec3ba749dadfe29416391.png)
 
 
 

@@ -2,7 +2,7 @@
 
 扩展接口：
 
-![spring_extension.jpg](http://www.qxnekoo.cn:8888/images/2020/04/23/spring_extension.jpg)
+![spring_extension.jpg](../myimage/spring_extension.png)
 
 - `BeanFactoryPostProcessor`
 

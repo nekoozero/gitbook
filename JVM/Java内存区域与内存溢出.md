@@ -4,7 +4,7 @@
 
 虚拟机在执行`Java`程序的时候会把他所管理的内存划分为若干个不同的数据区域，有的区域随着虚拟机进程的启动而一直存在，有些区域则是依赖用户线程的启动和结束而自动建立和销毁。
 
-![JVM_RUNTIME_MEMORY.png](http://www.qxnekoo.cn:8888/images/2020/03/11/JVM_RUNTIME_MEMORY.png)
+![JVM_RUNTIME_MEMORY.png](../myimage/JVM_RUNTIME_MEMORY.png)
 
 * 程序计数器（`Program Counter Register`）
 * Java虚拟机栈(`Java Virtual Machine Stack`)

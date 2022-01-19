@@ -22,7 +22,7 @@
 
 之后会对对象的对象头进行设置。在这些工作完成之后，一个新的对象就已经产生了，接着才是构造函数的执行等等。
 
-![508e088fff0acbb9b824d10993991eab.png](http://www.qxnekoo.cn:8888/images/2020/04/08/508e088fff0acbb9b824d10993991eab.png)
+![508e088fff0acbb9b824d10993991eab.png](../myimage/508e088fff0acbb9b824d10993991eab.png)
 
 ### 对象的内存布局
 
@@ -46,7 +46,7 @@
 
 2. 另一部分是**类型指针**，对象指向它的类型元数据的指针，通过这个指针来确定该对象是哪个类的实例。
 
-   ![HotSpot-.jpg](http://www.qxnekoo.cn:8888/images/2020/04/25/HotSpot-.jpg)
+   ![HotSpot-.jpg](../myimage/HotSpot-.png)
 
 此外，如果对象是一个`Java`数组，那么**对象头中还必须有一块用于记录数组长度的数据**，因为虚拟机可以通过普通对象的元数据信息来确定普通对象的大小，但是如果数组的长度是不确定的，将无法通过元数据来推断出数组的大小。
 
@@ -64,11 +64,11 @@
 
 1. 句柄访问，`Java`堆中可能会划分出一块内存作为句柄池，`reference`中存储的就是对象的句柄地址，而句柄中包含了对象实例数据与类型数据各自具体的地址信息。
 
-   ![818f16cb57eb8a9ef198a27c1e15f95a.png](http://www.qxnekoo.cn:8888/images/2020/03/12/818f16cb57eb8a9ef198a27c1e15f95a.png)
+   ![818f16cb57eb8a9ef198a27c1e15f95a.png](../myimage/818f16cb57eb8a9ef198a27c1e15f95a.png)
 
 2. 直接指针，`Java`堆中对象的内存布局就必须考虑如何放置访问类型数据的相关信息，`reference`中存储的直接就是对象地址，如果只是访问对象本身的话，就不需要多多一次间接访问的开销。
 
-   ![21d8a8b01f70ebfc6de39faa83645efd.png](http://www.qxnekoo.cn:8888/images/2020/03/12/21d8a8b01f70ebfc6de39faa83645efd.png)
+   ![21d8a8b01f70ebfc6de39faa83645efd.png](../myimage/21d8a8b01f70ebfc6de39faa83645efd.png)
 
 > 句柄访问的好处`reference`中存储的是稳定句柄地址，在对象被移动时只会改变句柄的实例数据地址，而`reference`本身不需要被修改。
 >

@@ -10,7 +10,7 @@ bean定义描述了一个bean实例，该实例具有属性值、构造函数参
 
 `BeanDefinition` 是 `Spring` 对 `Bean` 的抽象。容器中每一个 `bean` 都会有一个对应的 `BeanDefinition` 实例，该实例负责保存 `bean` 对象的所有必要信息，包括 `bean` 对象的 `class` 类型、是否抽象类、构造方法、参数、其他属性等。是用来描述 `Bean` 的。
 
-![BeanDefinition.png](http://www.qxnekoo.cn:8888/images/2020/04/21/BeanDefinition.png)
+![BeanDefinition.png](../myimage/BeanDefinition.png)
 
 - AttributeAccessor
 
@@ -97,7 +97,7 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 
 附加一张 `Bean` 的生命周期
 
-![Bean_lifeCycle.jpg](http://www.qxnekoo.cn:8888/images/2020/04/23/Bean_lifeCycle.jpg)
+![Bean_lifeCycle.jpg](../myimage/Bean_lifeCycle.png)
 
 
 

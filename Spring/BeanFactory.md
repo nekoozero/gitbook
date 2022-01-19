@@ -63,7 +63,7 @@ BeanFactory实现应该尽可能支持标准的bean生命周期接口。初始�
 
 `BeanFactory` 初始化流程：
 
-![BeanFactory_init.jpg](http://www.qxnekoo.cn:8888/images/2020/04/22/BeanFactory_init.jpg)
+![BeanFactory_init.jpg](../myimage/BeanFactory_init.png)
 
 主要来看看 `refresh` 方法，该方法定义在 `ConfigurableApplicationContext` 接口中，下面是`AbstractApplicationContext` 抽象类中的一个实现
 

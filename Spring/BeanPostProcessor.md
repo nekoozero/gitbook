@@ -81,7 +81,7 @@ public class Bean4BBP {
 
 结果如下：
 
-![BeanPostProcessor1.png](http://www.qxnekoo.cn:8888/images/2020/04/20/BeanPostProcessor1.png)
+![BeanPostProcessor1.png](../myimage/BeanPostProcessor1.png)
 
 好好理解一下：
 
@@ -93,7 +93,7 @@ public class Bean4BBP {
 
 下图是Bean的初始化步骤，可以看到 `BeanPostProcessor `
 
-![Bean-Initialization-Steps.jpg](http://www.qxnekoo.cn:8888/images/2020/04/20/Bean-Initialization-Steps.jpg)
+![Bean-Initialization-Steps.jpg](../myimage/Bean-Initialization-Steps.png)
 
 看几个比较 `Spring` 自己的 `BeanPostProcessor `，
 
@@ -103,7 +103,7 @@ public class Bean4BBP {
 
 1. `ApplicationListenerDetector.java`
 
-![BeanPostProcessor_applicationListener.png](http://www.qxnekoo.cn:8888/images/2020/04/20/BeanPostProcessor_applicationListener.png)
+![BeanPostProcessor_applicationListener.png](../myimage/BeanPostProcessor_applicationListener.png)
 
 2. `AbstractAutoProxyCreator.java`
 
@@ -113,7 +113,7 @@ public class Bean4BBP {
 
    也就是说在`AbstractAutoProxyCreator.java` 中的这个 `BeanPostProcessor` 调用了 `postProcessAfterInitialization()` 方法，这个里面会调用一个 `wrapIfNecessary` 方法，我们打上断点，
 
-   ![BeanPostProcessor_AOP1.png](http://www.qxnekoo.cn:8888/images/2020/04/20/BeanPostProcessor_AOP1.png)
+   ![BeanPostProcessor_AOP1.png](../myimage/BeanPostProcessor_AOP1.png)
 
    撰写一个测试类：`TestServiceImpl.java`，但是并不声明 `@transactional`,打印它的类名：
 
@@ -123,15 +123,15 @@ public class Bean4BBP {
 
      运行结果，并没有进入断点，而且 `Spring` 也并没有为其创建代理对象：
 
-   ![BeanPostProcessor_AOP2.png](http://www.qxnekoo.cn:8888/images/2020/04/20/BeanPostProcessor_AOP2.png)
+   ![BeanPostProcessor_AOP2.png](../myimage/BeanPostProcessor_AOP2.png)
 
    加上`@transactional`，重新运行，进入到断点，看到 `Spring` 为我们创建的代理对象，你品，你细品……：
 
-   ![BeanPostProcessor_AOP5.png](http://www.qxnekoo.cn:8888/images/2020/04/20/BeanPostProcessor_AOP5.png)
+   ![BeanPostProcessor_AOP5.png](../myimage/BeanPostProcessor_AOP5.png)
 
    之后放开断点看结果：
 
-   ![BeanPostProcessor_AOP6.png](http://www.qxnekoo.cn:8888/images/2020/04/20/BeanPostProcessor_AOP6.png)
+   ![BeanPostProcessor_AOP6.png](../myimage/BeanPostProcessor_AOP6.png)
 
    这就呼应上了，该对象就是 `Spring` 为其创建的对象，完事儿。    
 

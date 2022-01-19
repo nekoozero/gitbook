@@ -1,6 +1,6 @@
 # KMP 算法
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20191017160210876.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxMTEzNzYyMzE2MA==,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](../myimage/20.png)
 
 一个基本事实是，当空格与 D 不匹配时，你其实知道前面六个字符是”ABCDAB”。 KMP 算法的想法是，设法利用这个已知信息，不要把”搜索位置”移回已经比较过的位置，继续把它向后移，这 样就提高了效率。
 
@@ -8,15 +8,15 @@
 
 KMP 算法的整体思路：在已匹配的前缀当中寻找到最长可匹配后缀子串和最长可匹配前缀子串，在下一轮直接把两者对齐，从而实现模式串的快速移动。
 
-![img](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9OdE81c2lhbEpaR3BOVHlWY3RKN2RvckRpYldSMFlYWkJKNVJxbE03b0hhRkpyaWMyQWhya3JOazZZOXJsQzRVM2lhTmpXZ25wYnpjakU0SDZOYUZ6a2MySWcvNjQw?x-oss-process=image/format,png)
+![img](../myimage/21.png)
 
 在下一轮的比较时，只有把这两个相同的片段对齐，才有可能出现匹配。这两个字符串片段，分别叫做**最长可匹配后缀子串**和**最长可匹配前缀子串**。
 
-![img](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9OdE81c2lhbEpaR29hOXdEZk11RUgzcGVyVEpIV2huY1RhV2NTWkpWNVI2YWZpY2x4RnVaZ013Y2ljTzBaZ2xEMmJHdjEyaWN0RFFjVXVwUmpqUFRRRUtzWncvNjQw?x-oss-process=image/format,png)
+![img](../myimage/22.png)
 
 按照第一轮的思路，我们来重新确定最长可匹配后缀子串和最长可匹配前缀子串：
 
-![img](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9OdE81c2lhbEpaR3BOVHlWY3RKN2RvckRpYldSMFlYWkJKQ25MOE9aZHRvamhGbUo0S01SNVRWWHFkc2hkZjN2aWFpYzBKMzdGMmljYVV1SHNMV09pYUNGNTdxQS82NDA?x-oss-process=image/format,png)
+![img](../myimage/23.png)
 
 这样循环下去即可。
 
@@ -30,7 +30,7 @@ KMP 算法的整体思路：在已匹配的前缀当中寻找到最长可匹配�
 >
 > 最长可匹配前缀子串的下一个位置，也就是下一个要与坏字符进行匹配的位置。
 
-![img](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9OdE81c2lhbEpaR3A4SlpzQm1IaWNDQnpmMUkwbWxwbUlhdFplaktsbjFSTmljcXBubU9ETUtCc2ljNWljQzNHVG9BN1RrTzRPZkQyMzFSdDhGdGFRRHR4U0pBLzY0MA?x-oss-process=image/format,png)
+![img](../myimage/24.png)
 
 举个例子，主串中的字符为：GTGTGB……，已匹配的前缀为 GTGTG，坏字符出现在第五位（从零开始算），查询可得 next[5] = 3,也就是说坏字符 B 要和模式串中第三位的字符进行匹配，也就是 T,进行下一轮的匹配。
 

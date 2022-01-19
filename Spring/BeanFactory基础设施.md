@@ -4,7 +4,7 @@
 
 BeanFactory 是 Spring 框架的基础设施，面向 Spring 本身；ApplicationContext 面向使用 Spring 框架的开发者，几乎所有的应用场合我们都直接使用 ApplicationContext 而非底层的 BeanFactory。
 
-![BeanFactory-.png](http://www.qxnekoo.cn:8888/images/2020/08/10/BeanFactory-.png)
+![BeanFactory-.png](../myimage/BeanFactory-.png)
 
 下面列举一些基础设施：
 
@@ -46,7 +46,7 @@ BeanFactory 是 Spring 框架的基础设施，面向 Spring 本身；Applicatio
 
 ApplicationContext 由 BeanFactory 派生而来，提供了更多面向实际应用的功能。ApplicationContext 继承了HierarchicalBeanFactory 和 ListableBeanFactory 接口，在此基础上，还通过多个其他的接口扩展了 BeanFactory 的功能。
 
-![ApplicationContext.png](http://www.qxnekoo.cn:8888/images/2020/08/10/ApplicationContext.png)
+![ApplicationContext.png](../myimage/ApplicationContext.png)
 
 1. ClassPathXmlApplicationContext: 默认从类路径加载配置文件
 2. FileSystemXmlApplicationContext: 默认从文件系统中装在配置文件
@@ -56,30 +56,3 @@ ApplicationContext 由 BeanFactory 派生而来，提供了更多面向实际应
 
 6. LifeCycle:该接口是 Spring 2.0 加入的，该接口提供了 start() 和 stop() 两个方法，主要用于异步处理过程，在具体使用时，该接口同时被 ApplicationContext 实现及具体 Bean 实现，ApplicationContext 会将 stop/start 的信息传递给容器中所有实现了该接口的 Bean，以达到管理和控制 JMX、任务调度等目的。
 7. ConfigurableApplicationContext 扩展于 ApplicationContext，他新增加了两个主要的方法：refresh() 和 close()，让 ApplicationContext 具有启动、刷新和关闭应用上下文的能力。在应用上下文关闭的情况下使用 refresh() 即可启动应用上下文，在已经启动的状态下，调用 refresh() 则清除缓存并重新装载配置信息，而调用 close() 则可关闭应用上下文。
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

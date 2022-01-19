@@ -8,7 +8,7 @@
 
 字符串常量池也是放在堆中的。
 
-![795e3782f39e2f9eb500e3940470a897.png](http://www.qxnekoo.cn:8888/images/2020/04/14/795e3782f39e2f9eb500e3940470a897.png)
+![795e3782f39e2f9eb500e3940470a897.png](../myimage/795e3782f39e2f9eb500e3940470a897.png)
 
 当调用 `intern` 方法时，**如果池已经包含一个等于此String对象的字符串（用 `equals(oject)` 方法确定），则返回池中的字符串。否则，将此 `String` 对象添加到池中，并返回此 `String` 对象的引用。**
 

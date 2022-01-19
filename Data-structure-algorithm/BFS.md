@@ -194,11 +194,11 @@ public int openLock(String[] deadends, String target) {
 
 使用朴素 BFS 进行求解时，队列中最多会存在两层的搜索节点，因此搜索空间的上限取决于目标节点所在的搜索层次的深度所对应的宽度。下图展示了朴素 BFS 可能面临的搜索空间爆炸问题：
 
-![搜索空间爆炸](https://pic.leetcode-cn.com/1623894968-XELIvK-image.png)
+![搜索空间爆炸](../myimage/1623894968-XELIvK-image.png)
 
 而双向 BFS 同时从两个方向开始搜索，**一旦搜索到相同的值，意味着找到了一条联通起点和终点的最短路径**
 
-![图解双向 BFS](https://pic.leetcode-cn.com/1623894976-CCMljJ-image.png)
+![图解双向 BFS](../myimage/1623894976-CCMljJ-image.png)
 
 这里先展示下别人的 BFS 逻辑，之后补上三叶姐的实现思路。
 

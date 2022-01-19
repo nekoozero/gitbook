@@ -220,7 +220,7 @@ public class SpringlistenerApplication implements CommandLineRunner, Application
 
 运行结果：
 
-![Spring.png](http://www.qxnekoo.cn:8888/images/2020/04/19/Spring.png)
+![Spring.png](../myimage/Spring.png)
 
 还有一种监听的方式就是不使用泛型，全都监听
 
@@ -243,7 +243,7 @@ public class CommonListener implements ApplicationListener {
 
 运行结果
 
-![Spring2.png](http://www.qxnekoo.cn:8888/images/2020/04/19/Spring2.png)
+![Spring2.png](../myimage/Spring2.png)
 
 两种方式按照需求选择就可以了。
 
